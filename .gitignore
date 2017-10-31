@@ -1,0 +1,12 @@
+~*
+tmp/
+# LaTeX
+*.aux
+*.lof
+*.log
+*.lol
+*.lot
+*.out
+*.pdf
+*.toa
+*.toc
