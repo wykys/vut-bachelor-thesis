@@ -10,3 +10,4 @@ tmp/
 *.pdf
 *.toa
 *.toc
+!book/pdf/*.pdf
