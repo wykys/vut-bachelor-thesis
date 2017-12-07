@@ -4,6 +4,7 @@ LATEX = pdflatex
 FLAGS = -halt-on-error -interaction=nonstopmode
 
 NAME = book
+PDF_READER = zathura
 
 .PHONY: clean
 
@@ -11,4 +12,4 @@ NAME = book
 all: $(NAME)
 	$(LATEX) $(FLAGS) $(NAME).tex
 	$(LATEX) $(FLAGS) $(NAME).tex
-	ps -a | grep zathura || zathura $(NAME).pdf
+	ps -a | grep $(PDF_READER) || $(PDF_READER) $(NAME).pdf
