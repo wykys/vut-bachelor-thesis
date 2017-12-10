@@ -1,0 +1,48 @@
+\section{Optický přenost dat}
+\zkratka{LG} je založeno na optickém přenosu dat ze zbraně do vesty. Tyto data jsou naprosto klíčová, nesou v sobě informace o tom kdo je vyslal a chyba při přenosu nebo interpretaci těchto dat, by byla fatální. V nejhorším případě by mohla způsobit přičtení bodů špatnému hráči, což by poškodilo střelce a při kumulaci těchto chyb by \zkratka{LG} hráče brzy omrzela. Proto je potřeba se problematikou optického přenosu dat zabývat.
+
+Při \zkratka{LG} jsou data přenášena v infračerveném pásmu elektromagnetických vln což odpovídá vlnovým délkám $\lambda \in \langle 760~\jedn{nm};~1~\jedn{mm}\rangle$. Tyto vlnové délky jsou pro lidské oko nedetekovalné a tak si běžný hráč přenášenách dat, ani nevšimne.
+
+\subsection{Optické vysílače}
+Optický vysílače obdobně jako vysílače rádiové slouží k vysílání elektromagnetických vln. Od rádiových vysílačů  se odlišují tím, že využívají jinou část elektromagnetického spektra $\lambda \in \langle 10~\jedn{nm}~;~1~\jedn{mm}  \rangle$, tedy od infračerveného záření, předs viditelné světlo až po zážení ultra fialové. Vysílače můžeme rozdělit do dvou skupin a to vysílače založené na \zkratka{LED} a na laseru.
+
+\subsubsection{LED}
+Luminiscenční diody jsou polovodičové součástky z jedním PN přechodem. Narozdíl od klasických diod nemají \zkratka{LED} obě vrstvy PN přechodu stejně dotované. Plovodič N je mnohem více dotován, navíc má mnohem větší oběm než polovodič P. Díky tomu, pokud diodou prochází proud, tak převažuje přesun nosičů z oblasti N do oblasti P, kde rekombinují a uvolněná energie je přeměněna na světelné záření a tepelnou energii. Vrstva P je tenká, aby nechoázelo k velkým strátám, při šíření světla z polovodiče do okolního prostředí. Vlnová délka vyzařovaného světla je dána použitým základním materiálem. Pokud známe vlnovou délku, můžeme si spočítat potřebou energii, kterou je třeba elektronům udělit, aby \zkratka{LED} svítila.
+
+$$ E = hf = \dfrac{hc}{\lambda} $$
+
+\begin{figure}[!h]
+    \begin{center}
+        \includegraphics[scale=1]{img/led}
+    \end{center}
+    \caption{Technologické provedení LED pro viditelné světlo}
+\end{figure}
+
+\begin{figure}[!h]
+    \begin{center}
+        \includegraphics[scale=1]{img/ir-led}
+    \end{center}
+    \caption{Technologické provedení IR LED}
+\end{figure}
+
+\zkratka{IR} \zkratka{LED} jsou konstrukčne řešeny jinak. Využívá se toho, že \zkratka{IR} záření není polovodičem tlumeno tolik jako viditelné světlo. Díky tomu mohla být oblast vzniku záření umístěna do spodní části substrátu. To má velkou výhodu, protože se může snáze odvádět teplo vznikající při rekombinaci. Díky tomu mohou \zkratka{IR} \zkratka{LED} vyzařovat mnohem větší výkon než diody vyzařující viditelné světlo. Proto nalézají uplatnění jako optické vysílače, zejména na delší vzdálenosti. Základním materiálme pro výrobu \zkratka{IR} \zkratka{LED} je galiumarsenit. Vyráběné diody dosahují vlnových délek $\lambda \in \langle 830~\jedn{nm}~;~1040~\jedn{nm} \rangle$.
+
+\subsubsection{Laserové diody}
+Lasererová dioda je polovodičová součástka, která při malém proudu v propustném směru se chová jako klasická luminiscenční dioda. Proud způsobí spontální emisi\footnote{k emisi dochází náhodně, v libovolný čas} a dioda vyzařuje světlelné záření. Při zvíšení proudu diodou přechází dioda do laserového režimu. V tomto režimu je vyzařované světlo koherentní\footnote{to znamená, že světlo má konstantní frekvenci a fázi}. To nastane díky optické rezonanci v polovodičovém krystalu a následné vynucené emisi.
+
+\begin{figure}[!h]
+    \begin{center}
+        \includegraphics[scale=1]{img/laser}
+    \end{center}
+    \caption{Dvojitá heterogenní struktura polovodičového laseru}
+\end{figure}
+
+Emitované fotony se odráží od zrcadla a polopropustného zrcadla.  Krystal se chová jako dutinový rezonátor. Šířka a víška přechodu udává vid vznikajícího stojatého vlnění. Když překročí intenzita vlnení určitou mez, je vyzářena skrz polopropustné zrcadlo do okolí.
+
+Laserové diody nalézají uplatnění tam, kde je třeba vyzářit velký optický výkon. Vzhledem k tomu že v laserovém režimu se diody nachází až od vyššího proudu, tak vyžadují dobré chlazení, aby nedošlo k jejich poškození.
+
+\subsection{Optické přijímače}
+Opdický přijímač nobo-li detektoř či čidlo je elektrotechnická součástka, která převádí elektromagnetické vlnění o frekvencích $f \in \langle 300~\jedn{GHz}~;~100~\jedn{PHz} \rangle$ na elektrickou veličinu, nejčastěji napětí nebo proud.
+
+\subsubsection{LED jako přijímač}
+Nejjednodušším optickým přijímačem může být \zkratka{LED} dioda. Máme li dvě totožné luminiscenční diody a jednu použijeme jako zdroj, tak pokud jí budeme svítit na druhou diodu, budeme moci mezi její anodou a katodou zmeřit napětí.
