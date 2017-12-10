@@ -47,14 +47,15 @@ Opdický přijímač nobo-li detektoř či čidlo je elektrotechnická součást
 \subsubsection{LED jako přijímač}
 Nejjednodušším optickým přijímačem může být \zkratka{LED} dioda. Máme li dvě totožné luminiscenční diody a jednu použijeme jako zdroj, tak pokud jí budeme svítit na druhou diodu, budeme moci mezi její anodou a katodou zmeřit prahové napětí.
 
-Tento jev je způsoben tím, že dopade-li na oblast PN přechodu foton, který má dostatečnou energii uvolní z depletiční oblasti jeden pár díra elektron. Pokud není k diodě přiloženo vnější napětí, je v depletiční oblasti difúzní napětí. Díky difúznímu napětí je elektron urychlen do oblasti N a díra do oblasti P, tím vzniká driftový proud. Tento proces je označován jako fotoelektrický jev.
+Tento jev je způsoben tím, že dopade-li na oblast PN přechodu foton, který má dostatečnou energii uvolní z depletiční oblasti jeden pár díra elektron. Pokud není k diodě přiloženo vnější napětí, je v depletiční oblasti difúzní napětí. Díky difúznímu napětí je elektron urychlen do oblasti N a díra do oblasti P, tím vzniká driftový proud (proud v závěrném směru). Tento proces je označován jako fotoelektrický jev.
 
-Pokud dopadne foton mino vyprázdněnou oblast PN přechodu udělí elektronu energii, díky ní, se elektron uvolní z valenční vrstvy a stane se volným nosičem náboje. Teprve poté co se elektron dostane do dopletiční oblasti může být urychlen difúzním napětím a tím vznikne xyz proud. Tento děj je mnohem pomalejší než pokud foton dopadne přímo do depletiční oblasti.
+Pokud dopadne foton mino vyprázdněnou oblast PN přechodu udělí elektronu energii, díky ní, se elektron uvolní z valenční vrstvy a stane se volným nosičem náboje. Teprve poté co se elektron dostane do dopletiční oblasti může být urychlen difúzním napětím a tím vznikne difuzní proud. Tento děj je mnohem pomalejší než pokud foton dopadne přímo do depletiční oblasti.
 
 \subsubsection{Fotodioda}
-\subsubsection{Fototranzistor}
-\subsubsection{Integrované přijímače}
+Fotodioda je polovodičivá součástka která je navržená pro detevání záření. Konstrukčřne se podobá \zkratka{LED}. Ale má větší oblast prostorového náboje. Fotodiody se mohou rozdělit na dvě skupiny a to na PN fotodiody a PIN fotodiody. dopnit o další kecy ze senzorů...
 
-\subsection{Zabezpečení dat}
-\subsubsection{Parita}
-\subsubsection{Cyklický redundantní součet}
+\subsubsection{Fototranzistor}
+Fototranzistor je fotodioda s tranzistorem jako zesilovačem. Díky zesílení signálu je schopen detekovat i nižší intenzitu záření. Jeho nevíhodou je že má mnohem větší parazitní indukčnost, prtoto není vhodný pro měření rychlích signálů.
+
+\subsubsection{Integrované přijímače}
+Integrované optické přijímače mají na jednom čipu integrovanou kromě fotodiody i další elektroniku. Zpravidla obsahují vstupní zesilovač, pásmovou propust, demodulátor a vástupní zesilovač.
