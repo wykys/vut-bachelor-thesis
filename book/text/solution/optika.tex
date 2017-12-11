@@ -11,14 +11,14 @@ Luminiscenční diody jsou polovodičové součástky s jedním PN přechodem. N
 
 $$ E = hf = \dfrac{hc}{\lambda} $$
 
-\begin{figure}[!h]
+\begin{figure}[H]
     \begin{center}
         \includegraphics[scale=1]{img/led}
     \end{center}
     \caption{Technologické provedení LED pro viditelné světlo}
 \end{figure}
 
-\begin{figure}[!h]
+\begin{figure}[H]
     \begin{center}
         \includegraphics[scale=1]{img/ir-led}
     \end{center}
@@ -30,7 +30,7 @@ $$ E = hf = \dfrac{hc}{\lambda} $$
 \subsubsection{Laserové diody}
 Lasererová dioda je polovodičová součástka, která při malém proudu v propustném směru se chová jako klasická luminiscenční dioda. Proud způsobí spontánní emisi\footnote{k emisi dochází náhodně, v libovolný čas} a dioda vyzařuje světlelné záření. Při zvýšení proudu diodou přechází dioda do laserového režimu. V tomto režimu je vyzařované světlo koherentní\footnote{to znamená, že světlo má konstantní frekvenci a fázi}. To nastane díky optické rezonanci v polovodičovém krystalu a následné vynucené emisi.
 
-\begin{figure}[!h]
+\begin{figure}[H]
     \begin{center}
         \includegraphics[scale=1]{img/laser}
     \end{center}
@@ -52,10 +52,28 @@ Tento jev je způsoben tím, že dopadne-li na oblast PN přechodu foton, který
 Pokud dopadne foton mimo vyprázdněnou oblast PN přechodu, udělí elektronu energii, díky ní, se elektron uvolní z valenční vrstvy a stane se volným nosičem náboje. Teprve poté co se elektron dostane do dopletiční oblasti, může být urychlen difuzním napětím a tím vznikne difuzní proud. Tento děj je mnohem pomalejší, než pokud foton dopadne přímo do depletiční oblasti.
 
 \subsubsection{Fotodioda}
-Fotodioda je polovodičová součástka, která je navržená pro detekování záření. Konstrukčně se podobá \zkratka{LED}. Ale má větší oblast prostorového náboje. Fotodiody se mohou rozdělit na dvě skupiny a to na PN fotodiody a PIN fotodiody. dopnit o další kecy ze senzorů...
+Fotodioda je polovodičová součástka, která je navržená pro detekování záření. Převádí dopadající elektromagnetické vlny na elektrocký proud. Konstrukčně se podobá \zkratka{LED}. Fotodiody se mohou rozdělit na dvě skupiny a to na PN fotodiody a PIN fotodiody.
+
+PN diody nemají moc velkou oblast prostorového náboje, většina záření dopadá mino oblast prostorového náboje. A elektronům trvá déle, než se dostanou do oblasti prostorového náboje, který je urychlí, aby vytvořili elektrocký proud. Díky tomu nejsou vhodné pro detekcy rychlích signálů, ale jejich výhodou je díky jejich nízké citlivosti nízká šumovost.
+
+PIN diody jsou oproti PN diodám mnohem rychlejší mají velkou oblast prostorového náboje a témeř všechny dopadající fotony s dostatečnou energií, uvolní elektron, který je urychlen difuzním napětím a vytvoří záporný driftový proud. Od PN diod se liší tím, že mezi vrstvou N a P mají vrstvu čistého polovodiče s vlastní vodivostí označovanou jako I. Tato vrstva se neuplatňuje při průchodu stejnosměného proudu, dioda se chová jako běžná PN dioda. Pži vyšší frekvencích nosiče náboje s vrstvy I nestihnou být odsáty. Díky tomu má vrstva I lineární odpor daný protékajícím stejnosměrným proudem.
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=1]{img/pin}
+    \end{center}
+    \caption{Struktura PIN diody}
+\end{figure}
 
 \subsubsection{Fototranzistor}
-Fototranzistor je fotodioda s tranzistorem jako zesilovačem. Díky zesílení signálu je schopen detekovat i nižší intenzitu záření. Jeho nevýhodou je, že má mnohem větší parazitní indukčnost, proto není vhodný pro měření rychlých signálů.
+Fototranzistor je fotodioda s tranzistorem jako zesilovačem fotonového proudu. Díky zesílení signálu je schopen detekovat i nižší intenzitu záření. Jeho nevýhodou je, že má $\beta$ větší parazitní kapacitu ($\beta$ je proudoví zesilovací činitel), která omezuje jeho mezní frekvenci. Proto není vhodný pro měření rychlých signálů.
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=1]{img/foto-tran}
+    \end{center}
+    \caption{Náhradní schéma fototranzistoru}
+\end{figure}
 
 \subsubsection{Integrované přijímače}
-Integrované optické přijímače mají na jednom čipu integrovanou kromě fotodiody i další elektroniku. Zpravidla obsahují vstupní zesilovač, pásmovou propust, demodulátor a vástupní zesilovač.
+Integrované optické přijímače mají na jednom čipu integrovanou kromě fotodiody i další elektroniku. Zpravidla obsahují vstupní zesilovač, pásmovou propust, demodulátor a výstupní zesilovač. Ještě je to třeba dopsat.
