@@ -12,4 +12,4 @@ tmp/
 *.toc
 !book/pdf/*.pdf
 !book/loga/*.pdf
-!book/img/*.pdf
+!img/*.pdf
