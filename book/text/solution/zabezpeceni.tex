@@ -1,11 +1,11 @@
 \section{Zabezpečení dat}
-Pokud detekujeme optickým přijímačem data, nikdy nemáme jistotu, že to jsou opravdu ta data která vyslal náš vysílač a nebo jestli jsou poškozena. K tomu abychom odhalili chybu v datech slouží zabezpečovací metody přenosu dat. Fungují na tom princcipu, že kromě dat samotných se posílá ještě další redundantní informace spočítaná s přenášených dat. Nekteré zabezpečovací algoritmy jsou schopny kromě detekce chyb i chyby opravovat, ale těmi se v této práci zabývat nebudu.
+Pokud detekujeme optickým přijímačem data, nikdy nemáme jistotu, že to jsou opravdu ta data, která vyslal náš vysílač a nebo jestli jsou poškozena. K tomu, abychom odhalili chybu v datech, slouží zabezpečovací metody přenosu dat. Fungují na tom principu, že kromě dat samotných se posílá ještě další redundantní informace spočítaná z přenášených dat. Některé zabezpečovací algoritmy jsou schopny kromě detekce chyb i chyby opravovat, ale těmi se v této práci zabývat nebudu.
 
 \subsection{Parita}
 Parita je jednoduchý způsob zabezpečení dat. Ke každému slovu přenášených dat přidá jeden redundantní bit označovaný jako paritní. Rozližujeme ji na sudou a lichou.
 
 \subsubsection{Sudá parita}
-Paritní bit je nastaven tak, aby celkový počet jedniček v datovém slově včetně bitu paritního byl sudý. Můžeme ho spočítat jako exklusivní součet všechy bitů datového slova.
+Paritní bit je nastaven tak, aby celkový počet jedniček v datovém slově včetně bitu paritního byl sudý. Můžeme ho spočítat jako exkluzivní součet všechy bitů datového slova.
 $$ P_{sudá} = b_0 \oplus b_1 \oplus ... \oplus b_n $$
 
 \begin{figure}[H]
@@ -27,14 +27,14 @@ $$ P_{lichá} = \overline{ b_0 \oplus b_1 \oplus ... \oplus b_n } $$
 \end{figure}
 
 \subsection{Cyklický redundantní součet}
-Slouží ke kontrole, zda-li máme nepoškozená data. Na konec přenášených dat se přidá několik redundantních bitů spočítaných pomocí speciálnílní hašovací funkce \zkratka{CRC}. Po přijetí dat se může znovu spočítat \zkratka{CRC} pro přijatá data, které porovnnáme z \zkratka{CRC} které jsme přijali. Pokud budou kontrolní součky shodné, tak jsou přijatá data v pořádku. Další možností je spočítat \zkratka{CRC} pro celá přijadá data včetně kontrolního součtu, pokud jsou přijatá data nepoškozená,  tak dostaneme bitový vektor plný nul.
+Slouží ke kontrole, zda-li máme nepoškozená data. Na konec přenášených dat se přidá několik redundantních bitů spočítaných pomocí speciální hašovací funkce \zkratka{CRC}. Po přijetí dat se může znovu spočítat \zkratka{CRC} pro přijatá data, které porovnáme z \zkratka{CRC}, které jsme přijali. Pokud budou kontrolní součty shodné, tak jsou přijatá data v pořádku. Další možností je spočítat \zkratka{CRC} pro celá přijadá data včetně kontrolního součtu, pokud jsou přijatá data nepoškozená,  tak dostaneme bitový vektor plný nul.
 
-Čím vícebitovější \zkratka{CRC} pro kontrolu dat zvolíme, tím je větší pravděpodobnost odhalení chyby. Nejčastěji se používají \zkratka{CRC} o počtu bitů $8 \cdot 2^n$, kde $n \in \langle 0;~3\rangle$, ovšem je možné se ale setkat i s \zkratka{CRC} o jiných délkách, dokonce i s takovými, jejihž binázní logaritmus délky je necelé číslo.
+Čím vícebitovější \zkratka{CRC} pro kontrolu dat zvolíme, tím je větší pravděpodobnost odhalení chyby. Nejčastěji se používají \zkratka{CRC} o počtu bitů $8 \cdot 2^n$, kde $n \in \langle 0;~3\rangle$, ovšem je možné se ale setkat i s \zkratka{CRC} o jiných délkách, dokonce i s takovými, jejihž binární logaritmus délky je necelé číslo.
 
 \subsubsection{Generační polynom}
-Generační polynom je bitový vektor, který by měl pokrývat nejčastější chyby, které se v našich datech oběvují. Tento polynom je individuální pro kždé přenosové nebo úložné médium. Vytvoření vhodného generařního polynomu je založené na shromažďování statistických údajů o přenášených datech, na místech slova, kde je největší pravděpodobnost výskytu chyby se vloží jednička, tím je generační polynom vytvořen. Tento proces je ale velmi zdlouhavý a tak je jeho alternativou použít polynom již vytvořený jiným člověkem, několik polynomů pro různá přenosová média, jsou dostupné v \cite{crc-wiki}.
+Generační polynom je bitový vektor, který by měl pokrývat nejčastější chyby, které se v našich datech objevují. Tento polynom je individuální pro kždé přenosové nebo úložné médium. Vytvoření vhodného generačního polynomu je založené na shromažďování statistických údajů o přenášených datech. Na místech slova, kde je největší pravděpodobnost výskytu chyby se vloží jednička, tím je generační polynom vytvořen. Tento proces je ale velmi zdlouhavý a tak je jeho alternativou použít polynom již vytvořený jiným člověkem, několik polynomů pro různá přenosová média, jsou dostupné v \cite{crc-wiki}.
 
-\subsubsection{Exklusivní disjunkce}
+\subsubsection{Exkluzivní disjunkce}
 Je logická operace, která se dá vytvořit se základních hradel AND, OR a NOT. Tato funkce často nalézá uplatnění v kryptografii, hlavně v hashovacích funkcích.
 
 \begin{table}[!h]
@@ -59,29 +59,29 @@ Je logická operace, která se dá vytvořit se základních hradel AND, OR a NO
 
  Výsledkem  $A \oplus B $ je logická jednička, pokud se její vstupy liší. Další vlastností této funkce je, že pokud je $A = 0$, tak $Y = B$. Pomocí \zkratka{XOR} můžeme vytvořit i funkci NOT, pokud $A = 1$, tak $Y = \overline{B}$.
 
- XOR je funkce komutativní, takže nezálezí na pořadí dílčích kroků, to znemná, že $(A \oplus B) \oplus C = A \oplus (B \oplus C)$.
+ XOR je funkce komutativní, takže nezáleží na pořadí dílčích kroků, to znemená, že $(A \oplus B) \oplus C = A \oplus (B \oplus C)$.
 \newline\newline
-Ukázka čtyřbitového \zkratka{CRC} pro znak *, který je reprezentován v ASCII kódování dekadickou hodnotou $(42)_{10}$, tedy $(00101010)_2$. S generačním polynomem $x^2+1$, který odpovídá bitovému vektoru $(101)_2$. Pro přehlednost udělám mezi nibbli bytu a větčí mezeru mezi CRC nibblem
+Ukázka čtyřbitového \zkratka{CRC} pro znak *, který je reprezentován v ASCII kódování dekadickou hodnotou $(42)_{10}$, tedy $(00101010)_2$. S generačním polynomem $x^2+1$, který odpovídá bitovému vektoru $(101)_2$. Pro přehlednost udělám mezi jednotlivými nibbli mezeru a CRC oddělím velkou mezerou.
 
-Data zprava doplníme čtyčmi nulami, tedy počtem nul, který odpovídý zvolené velikosti kontrolního součtu.
+Data zprava doplníme čtyřmi nulami, tedy počtem nul, který odpovídý zvolené velikosti kontrolního součtu.
 $$ (0010~1010~~~0000)_2 $$
-Generační polynom přesuneme tak, aby jeho jeho první jednička (zleva) byla na stejné pozici jako je první jednička dat (také zleva).
+Generační polynom přesuneme tak, aby jeho první jednička (zleva) byla na stejné pozici jako je první jednička dat (také zleva).
 $$ (0010~1000~~~0000)_2 $$
-Mezi daty a generačním polynomem provedeme exklusivní součet.
+Mezi daty a generačním polynomem provedeme exkluzivní součet.
 \begin{eqnarray}
     (0010~1010~~~0000)_2  & \nonumber\\\underline{\oplus
     (0010~1000~~~0000)_2} & \nonumber\\
     (0000~0010~~~0000)_2  & \nonumber
 \end{eqnarray}
-Generační polynom posunujeme doprava, dokud se opět nepřekrývají jedničky a uděláme exklusivní součet z předchozím výsledkem. Tento proces opakujeme, dokud na pozici dat nejsou samé nuly.
+Generační polynom posunujeme doprava, dokud se opět nepřekrývají jedničky a uděláme exkluzivní součet s předchozím výsledkem. Tento proces opakujeme, dokud na pozici dat nejsou samé nuly.
 \begin{eqnarray}
     (0000~0010~~~0000)_2  & \nonumber\\\underline{\oplus
     (0000~0010~~~1000)_2} & \nonumber\\
     (0000~0000~~~1000)_2  & \nonumber
 \end{eqnarray}
-Vynulování jedniček na pozici dat dosáhneme kned při druhém opakování. Výsledkem kontrolního osučtu je tedy bitový vektor $(1000)_2$.
+Vynulování jedniček na pozici dat dosáhneme hned při druhém opakování. Výsledkem kontrolního součtu je tedy bitový vektor $(1000)_2$.
 
-Ten teď přidáme za data reprezentující znak * a pro ověření správnosti, spočítáme kontrolní součet, s tím rozdílem že už nebudeme přidávat za data další čtyři nulové bity. Pokud nám vyjde aplikováním výče popsaného algoritmu vektor plná 0, tka jsme postupovali správně.
+Ten teď přidáme za data reprezentující znak * a pro ověření správnosti, spočítáme kontrolní součet, s tím rozdílem, že už nebudeme přidávat za data další čtyři nulové bity. Pokud nám vyjde aplikováním výše popsaného algoritmu vektor plná 0, tak jsme postupovali správně.
 \begin{eqnarray}
     (0010~1010~~~1000)_2  & \nonumber\\\underline{\oplus
     (0010~1000~~~0000)_2} & \nonumber\\
