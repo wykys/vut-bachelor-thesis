@@ -1,5 +1,5 @@
 \chapter{Zabezpečení dat proti chybám}
-Pokud detekujeme optickým přijímačem data, nikdy nemáme jistotu, že to jsou opravdu ta data, která vyslal náš vysílač a nebo jestli  nejsou poškozená. K tomu, abychom odhalili poškozená data, slouží zabezpečovací aloritmy. Fungují na tom principu, že kromě dat samotných se posílá ještě další redundantní informace spočítaná z přenášených dat. Některé zabezpečovací algoritmy jsou schopny kromě detekce chyb i chyby opravovat, například Hammingův kód, ale těmi se v této práci nehudu zabývat.
+Pokud detekujeme optickým přijímačem data, nikdy nemáme jistotu, že to jsou opravdu ta data, která vyslal náš vysílač a nebo jestli  nejsou poškozená. K tomu, abychom odhalili poškozená data, slouží zabezpečovací algoritmy. Fungují na tom principu, že kromě dat samotných se posílá ještě další redundantní informace spočítaná z přenášených dat. Některé zabezpečovací algoritmy jsou schopny kromě detekce chyb i chyby opravovat, například Hammingův kód, ale těmi se v této práci nehudu zabývat.
 
 \subsection{Parita}
 Parita je jednoduchý způsob zabezpečení dat. Ke každému slovu přenášených dat přidá jeden redundantní bit označovaný jako paritní. Rozližujeme ji na sudou a lichou.
@@ -35,7 +35,7 @@ Používá se ke kontrole, zda-li máme nepoškozená data. Na konec přenášen
 Generační polynom je bitový vektor, který by měl pokrývat nejčastější chyby, které se v našich datech objevují. Tento polynom je individuální pro každé přenosové nebo úložné médium. Vytvoření vhodného generačního polynomu je založené na shromažďování statistických údajů o přenášených datech. Na místech slova, kde je největší pravděpodobnost výskytu chyby se vloží jednička, tím je generační polynom vytvořen. Tento proces je ale velmi zdlouhavý a tak je jeho alternativou použít polynom již vytvořený jiným člověkem, několik polynomů pro různá přenosová média, jsou dostupné v \cite{crc-wiki}.
 
 \subsubsection{Exkluzivní disjunkce}
-Je logická operace, která se dá vytvořit se základních hradel AND, OR a NOT. Tato funkce často nalézá uplatnění v kryptografii, hlavně v hashovacích funkcích.
+Je logická operace, která se dá vytvořit se základních hradel AND, OR a NOT. Tato funkce často nalézá uplatnění v kryptografii, hlavně v hašovacích funkcích.
 
 \begin{table}[!h]
   \caption{Tabulka hodnot logické funkce XOR}

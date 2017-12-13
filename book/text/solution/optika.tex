@@ -70,7 +70,7 @@ Fototranzistor se může modelovat jako fotodioda s tranzistorem jako zesilovač
     \caption{Náhradní schéma fototranzistoru}
 \end{figure}
 
-U reálného fototranzistoru, fopadají fotony přímo do oblasti báze, není tedy realizovaný fotodiodou s klasickým trnazistorem. Výže uvedený model, slouží jen pro získání představy o mezním kmitočtu.
+U reálného fototranzistoru, dopadají fotony přímo do oblasti báze, není tedy realizovaný fotodiodou s klasickým tranzistorem. Výže uvedený model, slouží jen pro získání představy o mezním kmitočtu.
 
 \subsection{Integrované přijímače}
 Integrované optické přijímače mají na jednom čipu integrovanou, kromě fotodiody, i další elektroniku. Zpravidla obsahují vstupní zesilovač, pásmovou propust, demodulátor a výstupní zesilovač.
@@ -82,14 +82,14 @@ Integrované optické přijímače mají na jednom čipu integrovanou, kromě fo
     \caption{Blokové schéma integrovaného přijímače OSRB38C9BA}
 \end{figure}
 
-Pro konkrétnější popis rozeberu výše uvedený přijímač. Záření v okolí lnové délky $940~\jedn{\mikro m}$ je detekováno fotodiodou a pomocí transimpedančního zesilovače (TIA) přivedeno do příjímače. TIA funguje jako napěťoví sledovač, který má vleký vstupní odpor a malý výstupní odpor. Je tu proto, aby se odebíraným výkonem nezatěžovala fotodioda.
+Pro konkrétnější popis rozeberu výše uvedený přijímač. Záření v okolí vlnové délky $940~\jedn{\mikro m}$ je detekováno fotodiodou a pomocí transimpedančního zesilovače (TIA) přivedeno do příjímače. TIA funguje jako napěťový sledovač, který má vleký vstupní odpor a malý výstupní odpor. Je tu proto, aby se odebíraným výkonem nezatěžovala fotodioda.
 
-S TIA je signál přiváděn do zesilovače s nastavitelným zesílením (CGA). Po zesílení je z CGA přiveden na pásmovou propust (BPF) se středním kmytočtem $37,9~\jedn{kHz}$. Ta slouží k odfiltrování rušivých frekvenčních složek před demodulací, aby nevznikali parazitní intermodulační produkty.
+S TIA je signál přiváděn do zesilovače s nastavitelným zesílením (CGA). Po zesílení je z CGA přiveden na pásmovou propust (BPF) se středním kmitočtem $37,9~\jedn{kHz}$. Ta slouží k odfiltrování rušivých frekvenčních složek před demodulací, aby nevznikali parazitní intermodulační produkty.
 
-Po vyfiltrování se signál rozdělí do dvou větví. První větev jde přímo do demodulátoru. Druhá větev slouží jako jedna ze spětných vazeb pro CGA. Kromě toho, že druhá větěv tvoří zpětnou vazbu vede i do automatického nastavovače prahového napětí (ACT), pro hruhý komparátor v demodulátoru. Pokud má signál dostatečnou amplitudu projde diodou a nabije kondenzátor.
+Po vyfiltrování se signál rozdělí do dvou větví. První větev jde přímo do demodulátoru. Druhá větev slouží jako jedna ze zpětných vazeb pro CGA. Kromě toho, že druhá větěv tvoří zpětnou vazbu vede i do automatického nastavovače prahového napětí (ACT), pro druhý komparátor v demodulátoru. Pokud má signál dostatečnou amplitudu, projde diodou a nabije kondenzátor.
 
-Demodulace probíhátak, že pokud signál, který vychází s BPF má vyšší amplitudu, než je komparační napětí některého z omparátorů, tak komparátor sepne. Aby byl výstup demodulátoru v logické jedničce, tak musí být seplé oba dva komparátory, protože jejich výstupy jsou na hradlo AND, které je výstupem demodulace. Tedy vstupní signál musí mít větší amplitudu, než je pevně danné předpětí prvního komparátoru a větší amplidutu než je komparační napětí druhého kompatárotu, které je nastavováno z výstupu BPF.
+Demodulace probíhá tak, že pokud signál, který vychází s BPF má vyšší amplitudu, než je komparační napětí některého z comparátorů, tak komparátor sepne. Aby byl výstup demodulátoru v logické jedničce, tak musí být seplé oba dva komparátory, protože jejich výstupy jsou na hradlo AND, které je výstupem demodulace. Tedy vstupní signál musí mít větší amplitudu, než je pevně dané předpětí prvního komparátoru a větší amplidutu než je komparační napětí druhého komparátoru, které je nastavováno z výstupu BPF.
 
-Integrátor vyhlazuje výstupní signál, za cenu toho, že signál stratí ostré hrany.
+Integrátor vyhlazuje výstupní signál, za cenu toho, že signál ztratí ostré hrany.
 
-Výstup integrátoru je přiveden na vstup schmittova klopného obvodu, který z integrovaného signálu vytvoří opět ostrý obdélníhový signál. Výstup ze shmittova kompatárovu je další zpětnou vazbu pro CGA a také řídí výstupní tranzistor.
+Výstup integrátoru je přiveden na vstup Schmittova klopného obvodu, který z integrovaného signálu vytvoří opět ostrý obdélníkový signál. Výstup ze Shmittova komparátoru je další zpětnou vazbu pro CGA a také řídí výstupní tranzistor.
