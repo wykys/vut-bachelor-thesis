@@ -57,12 +57,62 @@ Vysílač je založen na modulování \zkratka{UART} na \zkratka{PWM}. PWM gener
 Protože UART má klidový stav v logické jedničce, tak je invertován pomocí hradla NOT, a pomocí hradla AND namodulován na PWM. Kdyby nebyl invertovanán tak by vysílací LED většinu času strávila vysíláním, coč by zbytečně zvětšilo spotřebu a navíc by mohlo dojít k zahlčení detektoru.
 
 \subsection{Přijímač}
-Přijímač k dekódování přijatého signálu využívá UART integrovaný v mikrokontroléru. Klidový stav detektoru je díky integrovanému pull-up odporu v logické jedničce, pokud detekuje signál, tak stáhne výstup do logické nuly. Tohle chování detektoru je pro nás vhodné protože vysíláme pouze nulové bity.
+Přijímač k dekódování přijatého signálu využívá UART integrovaný v mikrokontroléru. Klidový stav detektoru je díky integrovanému pull-up odporu v logické jedničce, pokud detekuje signál, tak stáhne výstup do logické nuly. Tohle chování detektoru je pro nás vhodné protože vysíláme pouze nulové bity. Detektor je opatřen RC článkem paby do něj nevnikalo rušení z napájecího vedení.
 
 UART byl nastaven na přenosovou rychlost $2400~\jedn{bps}$. Na jeden bit trvá přibližně $416~\jedn{\mikro s}$. Perioda jednoho PWM pulzu je $23~\jedn{\mikro s}$, tedy na jeden bit připadá $16$ PWM pulzů. Vzhledem k toleranci detektoru je patrná pčíčina vzniká chyb při zahlcení, zkrátka přenosová rychlost je na použitý detektor příliš vysoká. Experimentálěn jsem vyzkoušel i nejnižší standardní přenosovou rychlost $1200~\jedn{bps}$. Jeden bit tedy trval $832~\jedn{\mikro s}$. Ale stále při posílání dat s lekým počtem nul docházelo velmi často k chybám. Mohl bych ještě snižovat přenosovou rychlost, ale neomezil bych tím zahlcování detektorů, proto jsem se rozhodl navrhnout vlatní komunikační protokol.
 
 \subsection{Zhodnocení systému}
-Tento koncepce není moc spolehlivý. Pokud se vysílají data, která obsahují velké množství nul, po několika paketech dojde k zahlcení detektoru. To se projevuje tak, že se projevý tolerance detektoru $\pm200~\jedn{\mikro s}$, která deformuje přijímaný signál. UART tyto data podé dekóduje s velkou chybovostí. Díky CRC kontorle se sice vyhodnotí, že data jsou chybná, tudíž nedojde k usmrcení zasařeného hráče a přičtení bodů špatnému hráči, ale pokud hřáč protihráče zasáhl a on přesto žije, kazí to hru.
+Tento koncepce není moc spolehlivý. Pokud se vysílají data, která obsahují velké množství nul, po několika paketech dojde k zahlcení detektoru. To se projevuje tak, že se projevý tolerance detektoru $\pm200~\jedn{\mikro s}$, která deformuje přijímaný signál. UART tyto data podé dekóduje s velkou chybovostí. Díky CRC kontorle se sice vyhodnotí, že data jsou chybná, tudíž nedojde k usmrcení zasařeného hráče a přičtení bodů špatnému hráči, ale pokud hřáč protihráče zasáhl a on přesto žije, kazí to hru. Pokud se přeručí část packetu (poslední byte) při přenosu, UART tuto chybu neodhalí a od přerušení spojení nabyte zbytek bitů hodnotu jedna.
 
 
 \section{Druhý návrh systému IR přenosu dat}
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=\textwidth]{img/ir-system}
+    \end{center}
+    \caption{Zjednodušené schéma druhé verze systému pro IR přenos dat}
+\end{figure}
+
+Tento systém, vzniknul jako náhrada systému předchozího. Je navržen tak, aby odolával problémům se shnulky nul a korektně dekódovat data i při jejich deformaci o $\pm200~\jedn{\mikro s}$.
+
+Systém už není založen na modulování UARTu na PWM signál. Byl inspirován komunikačními protokoly dálkových ovladačů, které jsou robustní a spolehlivé. Pro přenos jsem si navrhnul vlastín komunikační protokol. Jak jednička tak nula jsou reprezentovány pulzem a charakteristickou mezerou, takže pokud dojde k ke strátě části packetu, problém je odhalen, protože bude porušen komunikační protokol.
+
+\subsection{Komunikační protkokol}
+Komunikace začíná odesláním startovacího impulzu, poté následuje startovací mezera. Po této sekvenci následuje 24 period zečínajících vždy datovým pulsem, který má pevnou délku, následovaným mezerou, která definuje zda-li se přenáší jednička, nebo nula. Po dokončení posílání datových bitů následuje ukončovací pulz. Jednotlivé packety jsou od sebe navíc odděleni mezerou, která má definovanou minimální délku. Při vyhodnocování se počítá s tolerancí $\pm250~\jedn{\mikro s}$, čož s rezervou pokryje toleranci optického přijímače.
+
+\begin{table}[H]
+  \caption{Definice časování kominikačního protokolu}
+  \begin{center}
+  	\small
+	  \begin{tabular}{|l|r|}
+	    \hline
+	    \textbf{název} & \textbf{čas [\jedn{\mikro s}]} \\\hline\hline
+	    \texttt{IR\_TIM\_START\_PULS}       &  5000     \\\hline
+	    \texttt{IR\_TIM\_START\_SPACE}      &  5000     \\\hline
+	    \texttt{IR\_TIM\_DATA\_PULS}        &   600     \\\hline
+	    \texttt{IR\_TIM\_DATA0\_SPACE}      &   600     \\\hline
+        \texttt{IR\_TIM\_DATA1\_SPACE}      &  1200     \\\hline
+        \texttt{IR\_TIM\_END\_PULS}         &  3000     \\\hline
+        \texttt{IR\_TIM\_PACKET\_SPACE}     & 30000     \\\hline
+        \texttt{IR\_TIM\_TOLERANCE}         &   250     \\\hline
+	  \end{tabular}
+  \end{center}
+\end{table}
+
+
+
+\subsection{Zhodnocení}
+Tento protokol je spolehlivý, povedlo se jím opravit všechny nedostatky, kterými trpěla předchozí verze. Navíc došlo k zjednodušenění HW. V přijímači už není potřeba mít hradlo NOT. Z HW by se mohlo vypustit i hradlo AND a nahrhradit jej hradlem NAND, které je součástí IRTIM (IR timeru, který vznikne spojením timeru 16 a 17) integrovaným přímo v některých STM32F0 mikrokontrolérech. Nakonec ale pro vysílač stačlo použít malý mikrokontorlér STM32F042F6P6, takže použít diskrétníhradlo AND bylo nezbytné.
+
+Maximální doba přnosu jednoho packetu (plného jedniček), trvá $86,2~\jedn{ms}$. Minimální dopa přenosu packetu (plného nul) je $71,8~\jedn{ms}$. Maximální přenosová rychlost je $334~\jedn{bps}$. Minimální přenosová rychlost je $278~\jedn{bps}$. Dosažené přenosové rychlosti jsou sice mnohem nižší než v předchozí verzi, ale vzhledem k přenšenému oběmu dat $24~\jedn{b}$ po stisku souště je doba přenosu přijatelná.
+
+Pokud by bylo potřeba, protokol někdy upravit, tak přenosová rychlost jde navýšit, snížením rozestupu mezi packety.
+
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=\textwidth]{img/model-ir-komunikace}
+    \end{center}
+    \caption{Zjednodušené schéma druhé verze systému pro IR přenos dat}
+\end{figure}
