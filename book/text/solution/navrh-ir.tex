@@ -1,4 +1,7 @@
 \chapter{Návrh systému pro infračervený přenos dat}
+\zkratka{LG} je založeno na optickém přenosu dat ze zbraně do vesty. Tato data jsou naprosto klíčová, nesou v sobě informace o tom, kdo je vyslal a chyba při přenosu nebo interpretaci těchto dat, by byla fatální. V nejhorším případě by mohla způsobit přičtení bodů špatnému hráči, což by poškodilo střelce a při kumulaci těchto chyb by \zkratka{LG} hráče brzy omrzela. Proto je potřeba se problematikou optického přenosu dat zabývat.
+
+Při \zkratka{LG} jsou data přenášena v infračerveném pásmu elektromagnetických vln, což odpovídá vlnovým délkám $\lambda \in \langle 760~\jedn{nm};~1~\jedn{mm}\rangle$. Tyto vlnové délky jsou pro lidské oko nedetekovalné a tak si běžný hráč přenášených dat, ani nevšimne.
 
 \section{Požadavky na systém}
 Sytém musí být schopen vyslat po stisknutí spouště, informace o tom kdo vystřelil. Tyto informace musí být také schopen přijmout, dekódovat a rozhodnout jestli jsou data vpořádku nebo přišla poškozená. Data by měla být schopna adresovat minimálně 12 hráčů a čas od výstřelu do vyhodnocení dat co nejratší aby nedošlo k tomu, že hráč vystřelí někoho zastřelí a on by mohl ještě několik okmažiků hrát.

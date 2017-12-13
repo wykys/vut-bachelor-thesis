@@ -1,5 +1,5 @@
 \chapter{Zabezpečení dat proti chybám}
-Pokud detekujeme optickým přijímačem data, nikdy nemáme jistotu, že to jsou opravdu ta data, která vyslal náš vysílač a nebo jestli jsou poškozena. K tomu, abychom odhalili chybu v datech, slouží zabezpečovací metody přenosu dat. Fungují na tom principu, že kromě dat samotných se posílá ještě další redundantní informace spočítaná z přenášených dat. Některé zabezpečovací algoritmy jsou schopny kromě detekce chyb i chyby opravovat, ale těmi se v této práci zabývat nebudu.
+Pokud detekujeme optickým přijímačem data, nikdy nemáme jistotu, že to jsou opravdu ta data, která vyslal náš vysílač a nebo jestli  nejsou poškozená. K tomu, abychom odhalili poškozená data, slouží zabezpečovací aloritmy. Fungují na tom principu, že kromě dat samotných se posílá ještě další redundantní informace spočítaná z přenášených dat. Některé zabezpečovací algoritmy jsou schopny kromě detekce chyb i chyby opravovat, například Hammingův kód, ale těmi se v této práci nehudu zabývat.
 
 \subsection{Parita}
 Parita je jednoduchý způsob zabezpečení dat. Ke každému slovu přenášených dat přidá jeden redundantní bit označovaný jako paritní. Rozližujeme ji na sudou a lichou.
@@ -27,7 +27,7 @@ $$ P_{lichá} = \overline{ b_0 \oplus b_1 \oplus ... \oplus b_n } $$
 \end{figure}
 
 \subsection{Cyklický redundantní součet}
-Slouží ke kontrole, zda-li máme nepoškozená data. Na konec přenášených dat se přidá několik redundantních bitů spočítaných pomocí speciální hašovací funkce \zkratka{CRC}. Po přijetí dat se může znovu spočítat \zkratka{CRC} pro přijatá data, které porovnáme z \zkratka{CRC}, které jsme přijali. Pokud budou kontrolní součty shodné, tak jsou přijatá data v pořádku. Další možností je spočítat \zkratka{CRC} pro celá přijadá data včetně kontrolního součtu, pokud jsou přijatá data nepoškozená,  tak dostaneme bitový vektor plný nul.
+Používá se ke kontrole, zda-li máme nepoškozená data. Na konec přenášených dat se přidá několik redundantních bitů spočítaných pomocí speciální hašovací funkce \zkratka{CRC}. Po přijetí dat se může znovu spočítat \zkratka{CRC} pro přijatá data, které porovnáme z \zkratka{CRC}, které jsme přijali. Pokud budou kontrolní součty shodné, tak jsou přijatá data v pořádku. Další možností je spočítat \zkratka{CRC} pro celá přijadá data včetně kontrolního součtu, pokud jsou přijatá data nepoškozená,  tak dostaneme bitový vektor plný nul.
 
 Čím vícebitovější \zkratka{CRC} pro kontrolu dat zvolíme, tím je větší pravděpodobnost odhalení chyby. Nejčastěji se používají \zkratka{CRC} o počtu bitů $8 \cdot 2^n$, kde $n \in \langle 0;~3\rangle$, ovšem je možné se ale setkat i s \zkratka{CRC} o jiných délkách, dokonce i s takovými, jejihž binární logaritmus délky je necelé číslo.
 
