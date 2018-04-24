@@ -1,41 +1,9 @@
 \chapter{Zabezpečení dat proti chybám}
-Pokud detekujeme optickým přijímačem data, nikdy nemáme jistotu, že to jsou opravdu ta data, která vyslal náš vysílač a nebo jestli  nejsou poškozená. K tomu, abychom odhalili poškozená data, slouží zabezpečovací algoritmy. Fungují na tom principu, že kromě dat samotných se posílá ještě další redundantní informace spočítaná z přenášených dat. Některé zabezpečovací algoritmy jsou schopny kromě detekce chyb i chyby opravovat, například Hammingův kód, ale těmi se v této práci nehudu zabývat.
+Při přenosu dat může dojít k jejich poškození. Abychom mohli ověřit korektnost přicházejících informací, tak je třeba zavézt bezpečnostní prostředky, které nám umožní odhalení chyb. Mezi tyto bezpečnostní prostředky patří i zabezpečovací kódy, kterými se budu v této kapitole zabývat.
 
-\subsection{Parita}
-Parita je jednoduchý způsob zabezpečení dat. Ke každému slovu přenášených dat přidá jeden redundantní bit označovaný jako paritní. Rozližujeme ji na sudou a lichou.
 
-\subsubsection{Sudá parita}
-Paritní bit je nastaven tak, aby celkový počet jedniček v datovém slově včetně bitu paritního byl sudý. Můžeme ho spočítat jako exkluzivní součet všechy bitů datového slova.
-$$ P_{sudá} = b_0 \oplus b_1 \oplus ... \oplus b_n $$
-
-\begin{figure}[H]
-    \begin{center}
-        \includegraphics[scale=1]{img/parita_suda}
-    \end{center}
-    \caption{Ukázka sudé parity}
-\end{figure}
-
-\subsubsection{Lichá parita}
-Paritní bit je nastaven tak, aby celkový počet jedniček v datovém slově včetně bitu paritního byl lichý. Můžeme ho spočítat obdobně jako sudý paritní bit, jen výsledek musíme znegovat.
-$$ P_{lichá} = \overline{ b_0 \oplus b_1 \oplus ... \oplus b_n } $$
-
-\begin{figure}[H]
-    \begin{center}
-        \includegraphics[scale=1]{img/parita_licha}
-    \end{center}
-    \caption{Ukázka liché parity}
-\end{figure}
-
-\subsection{Cyklický redundantní součet}
-Používá se ke kontrole, zda-li máme nepoškozená data. Na konec přenášených dat se přidá několik redundantních bitů spočítaných pomocí speciální hašovací funkce \zkratka{CRC}. Po přijetí dat se může znovu spočítat \zkratka{CRC} pro přijatá data, které porovnáme z \zkratka{CRC}, které jsme přijali. Pokud budou kontrolní součty shodné, tak jsou přijatá data v pořádku. Další možností je spočítat \zkratka{CRC} pro celá přijatá data včetně kontrolního součtu, pokud jsou přijatá data nepoškozená,  tak dostaneme bitový vektor plný nul.
-
-Čím vícebitovější \zkratka{CRC} pro kontrolu dat zvolíme, tím je větší pravděpodobnost odhalení chyby. Nejčastěji se používají \zkratka{CRC} o počtu bitů $8 \cdot 2^n$, kde $n \in \langle 0;~3\rangle$, ovšem je možné se ale setkat i s \zkratka{CRC} o jiných délkách, dokonce i s takovými, jejich binární logaritmus délky je necelé číslo.
-
-\subsubsection{Generační polynom}
-Generační polynom je bitový vektor, který by měl pokrývat nejčastější chyby, které se v našich datech objevují. Tento polynom je individuální pro každé přenosové nebo úložné médium. Vytvoření vhodného generačního polynomu je založené na shromažďování statistických údajů o přenášených datech. Na místech slova, kde je největší pravděpodobnost výskytu chyby se vloží jednička, tím je generační polynom vytvořen. Tento proces je ale velmi zdlouhavý a tak je jeho alternativou použít polynom již vytvořený jiným člověkem, několik polynomů pro různá přenosová média, jsou dostupné v \cite{crc-wiki}.
-
-\subsubsection{Exkluzivní disjunkce}
-Je logická operace, která se dá vytvořit se základních hradel AND, OR a NOT. Tato funkce často nalézá uplatnění v kryptografii, hlavně v hašovacích funkcích.
+\section{Exkluzivní disjunkce}
+Někdy je možné se setkat i z pojmenováním exkluzivní součet, zkratkou XOR, případně značením $\oplus$. XOR je logická funkce, která se dá syntetizovat se základních logických funkcí AND či OR a NOT. Tato funkce často nalézá uplatnění v kryptografii, hlavně v hašovacích funkcích.
 
 \begin{table}[!h]
   \caption{Tabulka hodnot logické funkce XOR}
@@ -57,10 +25,54 @@ Je logická operace, která se dá vytvořit se základních hradel AND, OR a NO
   \end{center}
 \end{table}
 
- Výsledkem  $A \oplus B $ je logická jednička, pokud se její vstupy liší. Další vlastností této funkce je, že pokud je $A = 0$, tak $Y = B$. Pomocí \zkratka{XOR} můžeme vytvořit i funkci NOT, pokud $A = 1$, tak $Y = \overline{B}$.
+\begin{itemize}
+    \item Pokud $A = 0$, tak $Y = B$.
+    \item Pokud $A = 1$, tak $Y = \overline{B}$, vznikne nám tedy negace.
+    \item Výsledkem  $A \oplus B $ je logická jednička, pokud se její vstupy liší.
+    \item XOR je funkce komutativní, takže nezáleží na pořadí dílčích kroků, to znamená, že $(A \oplus B) \oplus C = A \oplus (B \oplus C)$.
+\end{itemize}
 
- XOR je funkce komutativní, takže nezáleží na pořadí dílčích kroků, to znamená, že $(A \oplus B) \oplus C = A \oplus (B \oplus C)$.
-\newline\newline
+$$ Y = A \oplus B = \overline{A}B + A\overline{B} = (\overline{A} + \overline{B}) (A + B) $$
+
+
+
+
+%Pokud detekujeme optickým přijímačem data, nikdy nemáme jistotu, že to jsou opravdu ta data, která vyslal náš vysílač a nebo jestli  nejsou poškozená. K tomu, abychom odhalili poškozená data, slouží zabezpečovací algoritmy. Fungují na tom principu, že kromě dat samotných se posílá ještě další redundantní informace spočítaná z přenášených dat. Některé zabezpečovací algoritmy jsou schopny kromě detekce chyb i chyby opravovat, například Hammingův kód, ale těmi se v této práci nehudu zabývat.
+
+\section{Parita}
+Parita je velmi jednoduchý způsob zabezpečení dat. Ke každému slovu přenášených dat přidá jeden redundantní bit označovaný jako paritní. Paritu rozlišujeme na sudou a lichou.
+
+\subsection{Sudá parita}
+Paritní bit je nastaven tak, aby celkový počet jedniček v datovém slově včetně bitu paritního byl sudý. Můžeme ho spočítat jako exkluzivní součet všech bitů datového slova.
+$$ P_{sudá} = b_0 \oplus b_1 \oplus ... \oplus b_n $$
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=1]{img/parita_suda}
+    \end{center}
+    \caption{Ukázka sudé parity}
+\end{figure}
+
+\subsection{Lichá parita}
+Paritní bit je nastaven tak, aby celkový počet jedniček v datovém slově včetně bitu paritního byl lichý. Můžeme ho spočítat obdobně jako sudý paritní bit, jen výsledek musíme znegovat.
+$$ P_{lichá} = \overline{ b_0 \oplus b_1 \oplus ... \oplus b_n } $$
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=1]{img/parita_licha}
+    \end{center}
+    \caption{Ukázka liché parity}
+\end{figure}
+
+\section{Cyklický redundantní součet}
+Používá se ke kontrole, zda-li máme nepoškozená data. Na konec přenášených dat se přidá několik redundantních bitů spočítaných pomocí speciální hašovací funkce \zkratka{CRC}. Po přijetí dat se může znovu spočítat \zkratka{CRC} pro přijatá data, které porovnáme z \zkratka{CRC}, které jsme přijali. Pokud budou kontrolní součty shodné, tak jsou přijatá data v pořádku. Další možností je spočítat \zkratka{CRC} pro celá přijatá data včetně kontrolního součtu, pokud jsou přijatá data nepoškozená,  tak dostaneme bitový vektor plný nul.
+
+Čím vícebitovější \zkratka{CRC} pro kontrolu dat zvolíme, tím je větší pravděpodobnost odhalení chyby. Nejčastěji se používají \zkratka{CRC} o počtu bitů $8 \cdot 2^n$, kde $n \in \langle 0;~3\rangle$, ovšem je možné se ale setkat i s \zkratka{CRC} o jiných délkách, dokonce i s takovými, jejich binární logaritmus délky je necelé číslo.
+
+\subsection{Generační polynom}
+Generační polynom je bitový vektor, který by měl pokrývat nejčastější chyby, které se v našich datech objevují. Tento polynom je individuální pro každé přenosové nebo úložné médium. Vytvoření vhodného generačního polynomu je založené na shromažďování statistických údajů o přenášených datech. Na místech slova, kde je největší pravděpodobnost výskytu chyby se vloží jednička, tím je generační polynom vytvořen. Tento proces je ale velmi zdlouhavý a tak je jeho alternativou použít polynom již vytvořený jiným člověkem, několik polynomů pro různá přenosová média, jsou dostupné v \cite{crc-wiki}.
+
+
 Ukázka čtyřbitového \zkratka{CRC} pro znak *, který je reprezentován v ASCII kódování dekadickou hodnotou $(42)_{10}$, tedy $(00101010)_2$. S generačním polynomem $x^2+1$, který odpovídá bitovému vektoru $(101)_2$. Pro přehlednost udělám mezi jednotlivými nibbli mezeru a CRC oddělím velkou mezerou.
 
 Data zprava doplníme čtyřmi nulami, tedy počtem nul, který odpovídá zvolené velikosti kontrolního součtu.
