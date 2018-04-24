@@ -6,7 +6,7 @@ Při přenosu dat může dojít k jejich poškození. Abychom mohli ověřit kor
 Někdy je možné se setkat i z pojmenováním exkluzivní součet, zkratkou XOR, případně značením $\oplus$. XOR je logická funkce, která se dá syntetizovat se základních logických funkcí AND či OR a NOT. Tato funkce často nalézá uplatnění v kryptografii, hlavně v hašovacích funkcích.
 
 \begin{table}[!h]
-  \caption{Tabulka hodnot logické funkce XOR}
+  \caption{Tabulka hodnot logické funkce XOR, $A$ a $B$ jsou vstupy $Y$ je výstup}
   \begin{center}
   	\small
 	  \begin{tabular}{|c|c||c|}
@@ -40,7 +40,7 @@ $$ Y = A \oplus B = \overline{A}B + A\overline{B} = (\overline{A} + \overline{B}
 %Pokud detekujeme optickým přijímačem data, nikdy nemáme jistotu, že to jsou opravdu ta data, která vyslal náš vysílač a nebo jestli  nejsou poškozená. K tomu, abychom odhalili poškozená data, slouží zabezpečovací algoritmy. Fungují na tom principu, že kromě dat samotných se posílá ještě další redundantní informace spočítaná z přenášených dat. Některé zabezpečovací algoritmy jsou schopny kromě detekce chyb i chyby opravovat, například Hammingův kód, ale těmi se v této práci nehudu zabývat.
 
 \section{Parita}
-Parita je velmi jednoduchý způsob zabezpečení dat. Ke každému slovu přenášených dat přidá jeden redundantní bit označovaný jako paritní. Paritu rozlišujeme na sudou a lichou.
+Parita je velmi jednoduchou cestou k zabezpečení dat. Ke každému slovu přenášených dat se přidá přidá jeden redundantní bit označovaný jako paritní, jehož hodnota zrcadlí celkový počet jedniček. Paritu rozlišujeme na sudou a lichou. Nevýhodou parity je, že nedokáže odhalit několikanásobnou chybu.
 
 \subsection{Sudá parita}
 Paritní bit je nastaven tak, aby celkový počet jedniček v datovém slově včetně bitu paritního byl sudý. Můžeme ho spočítat jako exkluzivní součet všech bitů datového slova.
@@ -54,7 +54,7 @@ $$ P_{sudá} = b_0 \oplus b_1 \oplus ... \oplus b_n $$
 \end{figure}
 
 \subsection{Lichá parita}
-Paritní bit je nastaven tak, aby celkový počet jedniček v datovém slově včetně bitu paritního byl lichý. Můžeme ho spočítat obdobně jako sudý paritní bit, jen výsledek musíme znegovat.
+Paritní bit je nastaven tak, aby celkový počet jedniček v datovém slově včetně bitu paritního byl lichý. Můžeme ho spočítat obdobně jako sudý paritní bit, jen výsledek je třeba znegovat.
 $$ P_{lichá} = \overline{ b_0 \oplus b_1 \oplus ... \oplus b_n } $$
 
 \begin{figure}[H]
