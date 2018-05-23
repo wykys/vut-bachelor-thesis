@@ -123,6 +123,8 @@ Při přenosu obměnějších dat (několik bytů) nastává problém, jakým zp
     \item Na začátku algoritmu přiřadíme do proměnné $crc$ vektor 32 jedniček.
     \item Poté každým bajtem dat modifikujeme hodnotu proměnné $crc$. Modifikace proměnné $crc$ spočívá v provedení exkluzivního součtu $crc$ s aktuálně zpracovávaným bytem dat a následného maskování výsledku pomocí bitového součinu s číslem 255. Touto operací vytvoříme číslo $\in \langle 0;~255 \rangle$, tedy 1~\jedn{B}.
     \item Pro takto upravený bajt je spočítán kontrolní součet.
+    \item Provedeme exkluzivní součet mezi výsledkem 3. bodu a proměnnou $crc$ bitově posunutou o osm míst do prava.
+    \item Výsledek 4. bodu uložíme do proměnné $crc$
     \item Opakujeme od 2. bodu dokud neprojdeme všechny datové bajty.
     \item Nakonec znegujeme hodnotu proměnné $crc$ ve které bude výsledek kontrolního součtu.
 \end{enumerate}
