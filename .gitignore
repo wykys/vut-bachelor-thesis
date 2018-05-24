@@ -13,3 +13,5 @@ tmp/
 !book/pdf/*.pdf
 !book/loga/*.pdf
 !img/*.pdf
+!sch/*.pdf
+!pcb/*.pdf
