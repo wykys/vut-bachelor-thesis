@@ -4,6 +4,9 @@ Zvukový generátor je důležitou součástí \zkratka{LG} vesty. Zajišťuje g
 \subsection{Požadavky na generátor}
 Pro generátor je jedním z nejdůležitějších požadavků jeho paměť alespoň 1~\jedn{MB}. Možnost jej řídit pomocí \zkratka{UART}. Jednoduchá indikace přehrávání a možnost snížit odběr generátoru pomocí GPIO.
 
+\subsection{Převody ADC DAC}
+
+
 \subsection{Realizace generátoru}
 \begin{figure}[H]
     \begin{center}
@@ -22,3 +25,39 @@ Pokud chceme obnovit původní signál, je třeba tyto vzorky signálu ve stejn�
 Následně je třeba signál obnovit pomocí rekonstrukčního (anti-aliasingového) filtru, tedy filtru typu dolní propust. Ten ze signálu odstraní nežádoucí spektrální složky, které vznikají skoky z hodnoty jednoho vzorku na vzorek druhý.
 
 Poté je signál zesílen ve výkonovém integrovaném audio zesilovači LM4861 a přiveden do reproduktoru, kde dojde k jeho převodu na mechanické vlnění.
+
+\subsection{Komunikační protokol}
+S generátorem se jednoduše komunikuje pomocí UARTU. Během komunikace se rozlišuje mezi třemi typy příkazů:
+\begin{itemize}
+    \item zastavit přehrávání
+    \item změnit zvukovou sadu
+    \item přehrát zvuk z nastavené zvukové sady
+\end{itemize}
+
+
+\begin{table}[H]
+  \caption{Kompletní seznam příkazů zvukového generátoru}
+  \begin{center}
+  	\small
+	  \begin{tabular}{|l|r|}
+	    \hline
+	    \textbf{název} & \textbf{kód} \\\hline\hline
+        \texttt{SOUND\_CMD\_STOP}                 &  0 \\\hline
+        \texttt{SOUND\_CMD\_SET\_SOUND\_SET\_EN}  &  1 \\\hline
+        \texttt{SOUND\_CMD\_SET\_SOUND\_SET\_CZ}  &  2 \\\hline
+        \texttt{SOUND\_CMD\_PLAY\_ACTIVATED}      &  3 \\\hline
+        \texttt{SOUND\_CMD\_PLAY\_GUN}            &  4 \\\hline
+        \texttt{SOUND\_CMD\_PLAY\_DONT\_GIVE\_UP} &  5 \\\hline
+        \texttt{SOUND\_CMD\_PLAY\_GAME\_OVER}     &  6 \\\hline
+        \texttt{SOUND\_CMD\_PLAY\_GO}             &  7 \\\hline
+        \texttt{SOUND\_CMD\_PLAY\_KEEP\_GOING}    &  8 \\\hline
+        \texttt{SOUND\_CMD\_PLAY\_NUMBER\_1}      &  9 \\\hline
+        \texttt{SOUND\_CMD\_PLAY\_NUMBER\_2}      & 10 \\\hline
+        \texttt{SOUND\_CMD\_PLAY\_NUMBER\_3}      & 11 \\\hline
+        \texttt{SOUND\_CMD\_PLAY\_NUMBER\_4}      & 12 \\\hline
+        \texttt{SOUND\_CMD\_PLAY\_NUMBER\_5}      & 13 \\\hline
+        \texttt{SOUND\_CMD\_PLAY\_PLAY}           & 14 \\\hline
+        \texttt{SOUND\_CMD\_PLAY\_WELL\_DONE}     & 15 \\\hline
+	  \end{tabular}
+  \end{center}
+\end{table}
