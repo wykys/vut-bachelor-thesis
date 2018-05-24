@@ -1,13 +1,14 @@
-\section{Generátor zvuků}
+\chapter{Generátor zvuků}
 Zvukový generátor je důležitou součástí \zkratka{LG} vesty. Zajišťuje generování zvuků, jejichž stěžejním cílem je informování hráčů o aktuálním dělení v aréně a také zlepšují výsledný prožitek ze hry.
 
-\subsection{Požadavky na generátor}
+\section{Požadavky na generátor}
 Pro generátor je jedním z nejdůležitějších požadavků jeho paměť alespoň 1~\jedn{MB}. Možnost jej řídit pomocí \zkratka{UART}. Jednoduchá indikace přehrávání a možnost snížit odběr generátoru pomocí GPIO.
 
-\subsection{Převody ADC DAC}
+\section{Převody ADC DAC}
+TODO
 
 
-\subsection{Realizace generátoru}
+\section{Realizace generátoru}
 \begin{figure}[H]
     \begin{center}
         \includegraphics[width=\textwidth]{img/sound-system}
@@ -26,8 +27,8 @@ Následně je třeba signál obnovit pomocí rekonstrukčního (anti-aliasingov�
 
 Poté je signál zesílen ve výkonovém integrovaném audio zesilovači LM4861 a přiveden do reproduktoru, kde dojde k jeho převodu na mechanické vlnění.
 
-\subsection{Komunikační protokol}
-S generátorem se jednoduše komunikuje pomocí UARTU. Během komunikace se rozlišuje mezi třemi typy příkazů:
+\section{Komunikační protokol}
+S generátorem se jednoduše komunikuje pomocí UARTu. Během komunikace se rozlišuje mezi třemi typy příkazů:
 \begin{itemize}
     \item zastavit přehrávání
     \item změnit zvukovou sadu
