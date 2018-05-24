@@ -1,0 +1,7 @@
+{
+  signal: [
+  {wave: 'x34.5.|=...x', data: ['ADDRESS', 'SIZE','DATA', 'CRC']},
+  {wave: 'x3445.|====x', data: ['BYTE', 'MSB','LSB', '(SIZE - 7) * BYTE', 'MSB', 'BYTE','BYTE','LSB']}
+],
+  config: {hscale: 2},  
+}
