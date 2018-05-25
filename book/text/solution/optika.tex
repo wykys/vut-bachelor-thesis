@@ -25,7 +25,7 @@ $$ E = hf = \dfrac{hc}{\lambda} $$
 \zkratka{IR} \zkratka{LED} jsou konstrukčně řešeny jinak. Využívá se toho, že \zkratka{IR} záření není polovodičem tlumeno tolik jako viditelné světlo. Díky tomu mohla být oblast vzniku záření umístěna do spodní části substrátu. To má velkou výhodu, protože se může snáze odvádět teplo vznikající při rekombinaci. Díky tomu mohou \zkratka{IR} \zkratka{LED} vyzařovat mnohem větší výkon než diody vyzařující viditelné světlo. Proto nalézají uplatnění jako optické vysílače, zejména na delší vzdálenosti. Základním materiálem pro výrobu \zkratka{IR} \zkratka{LED} je galiumarsenit. Vyráběné diody dosahují vlnových délek $\lambda \in \langle 830~\jedn{nm}~;~1040~\jedn{nm} \rangle$.
 
 \subsubsection{Laserové diody}
-Lasererová dioda je polovodičová součástka, která při malém proudu v propustném směru se chová jako klasická luminiscenční dioda. Proud způsobí spontánní emisi, to znamná, že k emisi dochází náhodně, v libovolný čas, a dioda vyzařuje světelné záření. Při zvýšení proudu diodou přechází dioda do laserového režimu. V tomto režimu je vyzařované světlo koherentní, tedy má konstantní frekvenci a fázi. To nastane díky optické rezonanci v polovodičovém krystalu a následné vynucené emisi.
+Laserová dioda je polovodičová součástka, která při malém proudu v propustném směru se chová jako klasická luminiscenční dioda. Proud způsobí spontánní emisi, to znamená, že k emisi dochází náhodně, v libovolný čas, a dioda vyzařuje světelné záření. Při zvýšení proudu diodou přechází dioda do laserového režimu. V tomto režimu je vyzařované světlo koherentní, tedy má konstantní frekvenci a fázi. To nastane díky optické rezonanci v polovodičovém krystalu a následné vynucené emisi.
 
 \begin{figure}[H]
     \begin{center}
@@ -41,17 +41,17 @@ Laserové diody nalézají uplatnění tam, kde je třeba vyzářit velký optic
 \section{Optické přijímače}
 Optický přijímač nebo-li detektor či čidlo je elektrotechnická součástka, která převádí elektromagnetické vlnění o frekvencích $f \in \langle 300~\jedn{GHz}~;~100~\jedn{PHz} \rangle$ na elektrickou veličinu, nejčastěji napětí nebo proud.
 
-\subsection{Fotodioda}
-Fotodioda je polovodičová součástka, založená na fotoelektrickém jevu, která je navržená pro detekování záření. Převádí dopadající elektromagnetické vlny na elektrocký proud. Konstrukčně se podobá \zkratka{LED}. Fotodiody se
-mohou rozdělit na dvě skupiny a to na PN fotodiody a PIN fotodiody.
+\subsection{Foto-dioda}
+Foto-dioda je polovodičová součástka, založená na fotoelektrickém jevu, která je navržená pro detekování záření. Převádí dopadající elektromagnetické vlny na elektrický proud. Konstrukčně se podobá \zkratka{LED}. Foto-diody se
+mohou rozdělit na dvě skupiny a to na PN foto-diody a PIN foto-diody.
 
 Dopadne-li na oblast PN přechodu foton, který má dostatečnou energii, uvolní z depletiční oblasti jeden pár díra elektron. Pokud není k diodě přiloženo vnější napětí, je v depletiční oblasti difuzní napětí. Díky difuznímu napětí je elektron urychlen do oblasti N a díra do oblasti P, tím vzniká driftový proud (proud v závěrném směru).
 
-Pokud dopadne foton mimo vyprázdněnou oblast PN přechodu, udělí elektronu energii, díky ní, se elektron uvolní z valenční vrstvy a stane se volným nosičem náboje. Teprve poté co se elektron dostane do dopletiční oblasti, může být urychlen difuzním napětím a tím vznikne difuzní proud. Tento děj je mnohem pomalejší, než pokud foton dopadne přímo do depletiční oblasti.
+Pokud dopadne foton mimo vyprázdněnou oblast PN přechodu, udělí elektronu energii, díky ní, se elektron uvolní z valenční vrstvy a stane se volným nosičem náboje. Teprve poté co se elektron dostane do depletiční oblasti, může být urychlen difuzním napětím a tím vznikne difuzní proud. Tento děj je mnohem pomalejší, než pokud foton dopadne přímo do depletiční oblasti.
 
-PN diody nemají moc velkou oblast prostorového náboje, většina záření dopadá mimo oblast prostorového náboje. A elektronům trvá déle, než se dostanou do oblasti prostorového náboje, který je urychlí, aby vytvořili elektrocký proud. Díky tomu nejsou vhodné pro detekci rychlých signálů, ale jejich výhodou je díky jejich nízké citlivosti nízká šumovost.
+PN diody nemají moc velkou oblast prostorového náboje, většina záření dopadá mimo oblast prostorového náboje. A elektronům trvá déle, než se dostanou do oblasti prostorového náboje, který je urychlí, aby vytvořili elektrický proud. Díky tomu nejsou vhodné pro detekci rychlých signálů, ale jejich výhodou je díky jejich nízké citlivosti nízká šumovost.
 
-PIN diody jsou oproti PN diodám mnohem rychlejší, mají velkou oblast prostorového náboje a témeř všechny dopadající fotony s dostatečnou energií, uvolní elektron, který je urychlen difuzním napětím a vytvoří záporný driftový proud. Od PN diod se liší tím, že mezi vrstvou N a P mají vrstvu čistého polovodiče s vlastní vodivostí označovanou jako I. Tato vrstva se neuplatňuje při průchodu stejnosměrného proudu, dioda se chová jako běžná PN dioda. Při vyšších frekvencích nosiče náboje z vrstvy I nestihnou být odsáty. Díky tomu má vrstva I lineární odpor daný protékajícím stejnosměrným proudem.
+PIN diody jsou oproti PN diodám mnohem rychlejší, mají velkou oblast prostorového náboje a téměř všechny dopadající fotony s dostatečnou energií, uvolní elektron, který je urychlen difuzním napětím a vytvoří záporný driftový proud. Od PN diod se liší tím, že mezi vrstvou N a P mají vrstvu čistého polovodiče s vlastní vodivostí označovanou jako I. Tato vrstva se neuplatňuje při průchodu stejnosměrného proudu, dioda se chová jako běžná PN dioda. Při vyšších frekvencích nosiče náboje z vrstvy I nestihnou být odsáty. Díky tomu má vrstva I lineární odpor daný protékajícím stejnosměrným proudem.
 
 \begin{figure}[H]
     \begin{center}
@@ -61,19 +61,19 @@ PIN diody jsou oproti PN diodám mnohem rychlejší, mají velkou oblast prostor
 \end{figure}
 
 \subsection{Fototranzistor}
-Fototranzistor se může modelovat jako fotodioda s tranzistorem jako zesilovačem fotonového proudu. Díky zesílení signálu je schopen detekovat i nižší intenzitu záření. Jeho nevýhodou je, že má $\beta$ větší parazitní kapacitu ($\beta$ je proudový zesilovací činitel), která omezuje jeho mezní frekvenci. Proto není vhodný pro měření rychlých signálů.
+Foto-tranzistor se může modelovat jako foto-dioda s tranzistorem jako zesilovačem fotonového proudu. Díky zesílení signálu je schopen detekovat i nižší intenzitu záření. Jeho nevýhodou je, že má $\beta$ větší parazitní kapacitu ($\beta$ je proudový zesilovací činitel), která omezuje jeho mezní frekvenci. Proto není vhodný pro měření rychlých signálů.
 
 \begin{figure}[H]
     \begin{center}
         \includegraphics[scale=1]{img/foto-tran}
     \end{center}
-    \caption{Náhradní schéma fototranzistoru}
+    \caption{Náhradní schéma foto-tranzistoru}
 \end{figure}
 
-U reálného fototranzistoru, dopadají fotony přímo do oblasti báze, není tedy realizovaný fotodiodou s klasickým tranzistorem. Výže uvedený model, slouží jen pro získání představy o mezním kmitočtu.
+U reálného foto-tranzistoru, dopadají fotony přímo do oblasti báze, není tedy realizovaný foto-diodou s klasickým tranzistorem. Výše uvedený model, slouží jen pro získání představy o mezním kmitočtu.
 
 \subsection{Integrované přijímače}
-Integrované optické přijímače mají na jednom čipu integrovanou, kromě fotodiody, i další elektroniku. Zpravidla obsahují vstupní zesilovač, pásmovou propust, demodulátor a výstupní zesilovač.
+Integrované optické přijímače mají na jednom čipu integrovanou, kromě foto-diody, i další elektroniku. Zpravidla obsahují vstupní zesilovač, pásmovou propust, demodulátor a výstupní zesilovač.
 
 \begin{figure}[H]
     \begin{center}
@@ -82,14 +82,14 @@ Integrované optické přijímače mají na jednom čipu integrovanou, kromě fo
     \caption{Blokové schéma integrovaného přijímače OSRB38C9BA}
 \end{figure}
 
-Pro konkrétnější popis rozeberu výše uvedený přijímač. Záření v okolí vlnové délky $940~\jedn{\mikro m}$ je detekováno fotodiodou a pomocí transimpedančního zesilovače (TIA) přivedeno do příjímače. TIA funguje jako napěťový sledovač, který má vleký vstupní odpor a malý výstupní odpor. Je tu proto, aby se odebíraným výkonem nezatěžovala fotodioda.
+Pro konkrétnější popis rozeberu výše uvedený přijímač. Záření v okolí vlnové délky $940~\jedn{\mikro m}$ je detekováno foto-diodou a pomocí trans-impedančního zesilovače (TIA) přivedeno do přijímače. TIA funguje jako napěťový sledovač, který má vleký vstupní odpor a malý výstupní odpor. Je tu proto, aby se odebíraným výkonem nezatěžovala foto-dioda.
 
 S TIA je signál přiváděn do zesilovače s nastavitelným zesílením (CGA). Po zesílení je z CGA přiveden na pásmovou propust (BPF) se středním kmitočtem $37,9~\jedn{kHz}$. Ta slouží k odfiltrování rušivých frekvenčních složek před demodulací, aby nevznikali parazitní intermodulační produkty.
 
-Po vyfiltrování se signál rozdělí do dvou větví. První větev jde přímo do demodulátoru. Druhá větev slouží jako jedna ze zpětných vazeb pro CGA. Kromě toho, že druhá větěv tvoří zpětnou vazbu vede i do automatického nastavovače prahového napětí (ACT), pro druhý komparátor v demodulátoru. Pokud má signál dostatečnou amplitudu, projde diodou a nabije kondenzátor.
+Po vyfiltrování se signál rozdělí do dvou větví. První větev jde přímo do demodulátoru. Druhá větev slouží jako jedna ze zpětných vazeb pro CGA. Kromě toho, že druhá větev tvoří zpětnou vazbu vede i do automatického nastavování prahového napětí (ACT), pro druhý komparátor v demodulátoru. Pokud má signál dostatečnou amplitudu, projde diodou a nabije kondenzátor.
 
-Demodulace probíhá tak, že pokud signál, který vychází s BPF má vyšší amplitudu, než je komparační napětí některého z comparátorů, tak komparátor sepne. Aby byl výstup demodulátoru v logické jedničce, tak musí být seplé oba dva komparátory, protože jejich výstupy jsou na hradlo AND, které je výstupem demodulace. Tedy vstupní signál musí mít větší amplitudu, než je pevně dané předpětí prvního komparátoru a větší amplidutu než je komparační napětí druhého komparátoru, které je nastavováno z výstupu BPF.
+Demodulace probíhá tak, že pokud signál, který vychází s BPF má vyšší amplitudu, než je komparační napětí některého z komparátorů, tak komparátor sepne. Aby byl výstup demodulátoru v logické jedničce, tak musí být sepnuté oba dva komparátory, protože jejich výstupy jsou na hradlo AND, které je výstupem demodulace. Tedy vstupní signál musí mít větší amplitudu, než je pevně dané předpětí prvního komparátoru a větší amplitudu než je komparační napětí druhého komparátoru, které je nastavováno z výstupu BPF.
 
 Integrátor vyhlazuje výstupní signál, za cenu toho, že signál ztratí ostré hrany.
 
-Výstup integrátoru je přiveden na vstup Schmittova klopného obvodu, který z integrovaného signálu vytvoří opět ostrý obdélníkový signál. Výstup ze Shmittova komparátoru je další zpětnou vazbu pro CGA a také řídí výstupní tranzistor.
+Výstup integrátoru je přiveden na vstup Schmittova klopného obvodu, který z integrovaného signálu vytvoří opět ostrý obdélníkový signál. Výstup ze Schmittova komparátoru je další zpětnou vazbu pro CGA a také řídí výstupní tranzistor.
