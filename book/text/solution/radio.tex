@@ -18,9 +18,15 @@ Rozhodl jsme se použít hvězdicovou topologii sítě, v jejímž středu se na
     \caption{znázornění rámce rádiové komunikace}
 \end{figure}
 
-Přenášený rámec má proměnnou délku v závislosti na velikosti přenášených dat. Pro kompletní konfiguraci vesty však zcela postačuje velikost 512~\jedn{B}.
+Přenášený rámec má proměnnou délku v závislosti na velikosti přenášených dat, jelikož je třeba přenášet data o velikosti pár bytů při zjišťování stavů vest, tak i data o velikosti stovek bytů při konfigurování zařízení. Pro kompletní konfiguraci vesty však zcela postačuje velikost 512~\jedn{B}.
 
 Rámec začíná 8~\jedn{b} adresou, která specifikuje příjemce / odesilatele. Následují dva bajty udávající počet bytů v rámci. Poté jsou v rámci umístěna přenášená data. Rámec končí čtyřmi bajty obsahujícími 32~\jedn{b} CRC, které slouží jednak k potvrzení správnosti přenášených dat a také k vyhledávání platných rámců v přijatých datech.
 
 \section{Praktická realizace}
-Rádiové rozhraní je postavené na modulech HM-TRP firmy Hope Microelectronics. Moduly mají programovatelnou pracovní frekvenci, já jej používám nastaven na 868~\jedn{MHz}. Dále mají nastavitelný vysílací výkon $\in \langle 1; 20 \rangle~\jedn{dBm}$. Moduly pracují v poloduplexním módu, tedy v jeden okamžik mohou buďto přijímat nebo vysílat. Dále jsou moduly vybaveny rozhraním UART, umožnujícím přijímat a vysílat přenášená data a také modul konfigurovat. Moduly poskytují pouze možnost vysílat a přijímat data, která jsou do něj pomocí UART poslána, avšak negarantují úspěšnost doručení dat na místo určení. Tento problém je třeba řešit během komunikace.
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=\textwidth]{img/hm-trp}
+    \end{center}
+    \caption{blokové schéma jednoduchého komunikačního řetězce z moduly HM-TRP}
+\end{figure}
+Rádiové rozhraní je postavené na modulech HM-TRP firmy Hope Microelectronics. Moduly mají programovatelnou pracovní frekvenci, já jej používám nastaven na 868~\jedn{MHz}. Dále mají nastavitelný vysílací výkon $\in \langle 1; 20 \rangle~\jedn{dBm}$. Moduly pracují v poloduplexním módu, tedy v jeden okamžik mohou buďto přijímat nebo vysílat. Dále jsou moduly vybaveny rozhraním UART, umožnujícím snadnou komunikaci z modulem (přijímat a vysílat přenášená data a také modul konfigurovat). Moduly poskytují pouze možnost vysílat a přijímat data, která jsou do něj pomocí UART poslána, avšak negarantují úspěšnost doručení dat na místo určení. Tento problém je třeba řešit během komunikace.
