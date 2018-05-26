@@ -4,7 +4,7 @@
 Optické vysílače obdobně jako vysílače rádiové slouží k vysílání elektromagnetických vln. Od rádiových vysílačů  se odlišují tím, že využívají jinou část elektromagnetického spektra $\lambda \in \langle 10~\jedn{nm}~;~1~\jedn{mm}  \rangle$, tedy od infračerveného záření, přes viditelné světlo až po záření ultra fialové. Vysílače můžeme rozdělit do dvou skupin a to vysílače založené na \zkratka{LED} a na laseru.
 
 \subsubsection{LED}
-Luminiscenční diody jsou polovodičové součástky s jedním PN přechodem. Na rozdíl od klasických diod nemají \zkratka{LED} obě vrstvy PN přechodu stejně dotované. Polovodič N je mnohem více dotován, navíc má mnohem větší objem než polovodič P. Díky tomu, pokud diodou prochází proud, tak převažuje přesun nosičů z oblasti N do oblasti P, kde rekombinují a uvolněná energie je přeměněna na světelné záření a tepelnou energii. Vrstva P je tenká, aby nedocházelo k velkým ztrátám, při šíření světla z polovodiče do okolního prostředí. Vlnová délka vyzařovaného světla je dána použitým základním materiálem. Pokud známe vlnovou délku, můžeme si spočítat potřebou energii, kterou je třeba elektronům udělit, aby \zkratka{LED} svítila.
+Luminiscenční diody jsou polovodičové součástky s jedním PN přechodem. Na rozdíl od klasických diod nemají \zkratka{LED} obě vrstvy PN přechodu stejně dotované. Polovodič N je mnohem více dotován, navíc má mnohem větší objem než polovodič P. Díky tomu, pokud diodou prochází proud, převažuje přesun nosičů z oblasti N do oblasti P, kde rekombinují a uvolněná energie je přeměněna na světelné záření a tepelnou energii. Vrstva P je tenká, aby nedocházelo k velkým ztrátám při šíření světla z polovodiče do okolního prostředí. Vlnová délka vyzařovaného světla je dána použitým základním materiálem. Pokud známe vlnovou délku, je možné spočítat potřebou energii, kterou je třeba elektronům udělit, aby \zkratka{LED} svítila.
 
 $$ E = hf = \dfrac{hc}{\lambda} $$
 
@@ -25,7 +25,7 @@ $$ E = hf = \dfrac{hc}{\lambda} $$
 \zkratka{IR} \zkratka{LED} jsou konstrukčně řešeny jinak. Využívá se toho, že \zkratka{IR} záření není polovodičem tlumeno tolik jako viditelné světlo. Díky tomu mohla být oblast vzniku záření umístěna do spodní části substrátu. To má velkou výhodu, protože se může snáze odvádět teplo vznikající při rekombinaci. Díky tomu mohou \zkratka{IR} \zkratka{LED} vyzařovat mnohem větší výkon než diody vyzařující viditelné světlo. Proto nalézají uplatnění jako optické vysílače, zejména na delší vzdálenosti. Základním materiálem pro výrobu \zkratka{IR} \zkratka{LED} je galiumarsenit. Vyráběné diody dosahují vlnových délek $\lambda \in \langle 830~\jedn{nm}~;~1040~\jedn{nm} \rangle$.
 
 \subsubsection{Laserové diody}
-Laserová dioda je polovodičová součástka, která při malém proudu v propustném směru se chová jako klasická luminiscenční dioda. Proud způsobí spontánní emisi, to znamená, že k emisi dochází náhodně, v libovolný čas, a dioda vyzařuje světelné záření. Při zvýšení proudu diodou přechází dioda do laserového režimu. V tomto režimu je vyzařované světlo koherentní, tedy má konstantní frekvenci a fázi. To nastane díky optické rezonanci v polovodičovém krystalu a následné vynucené emisi.
+Laserová dioda je polovodičová součástka, která při malém proudu v propustném směru se chová jako klasická luminiscenční dioda. Proud způsobí spontánní emisi, což znamená, že k emisi dochází náhodně v libovolný čas, čímž dioda vyzařuje světelné záření. Při zvýšení proudu diodou přechází dioda do laserového režimu. V tomto režimu je vyzařované světlo koherentní, tedy má konstantní frekvenci a fázi. To nastane díky optické rezonanci v polovodičovém krystalu a následné vynucené emisi.
 
 \begin{figure}[H]
     \begin{center}
@@ -45,9 +45,9 @@ Optický přijímač nebo-li detektor či čidlo je elektrotechnická součástk
 Foto-dioda je polovodičová součástka, založená na fotoelektrickém jevu, která je navržená pro detekování záření. Převádí dopadající elektromagnetické vlny na elektrický proud. Konstrukčně se podobá \zkratka{LED}. Foto-diody se
 mohou rozdělit na dvě skupiny a to na PN foto-diody a PIN foto-diody.
 
-Dopadne-li na oblast PN přechodu foton, který má dostatečnou energii, uvolní z depletiční oblasti jeden pár díra elektron. Pokud není k diodě přiloženo vnější napětí, je v depletiční oblasti difuzní napětí. Díky difuznímu napětí je elektron urychlen do oblasti N a díra do oblasti P, tím vzniká driftový proud (proud v závěrném směru).
+Dopadne-li na oblast PN přechodu foton s dostatečnou energii, uvolní z depletiční oblasti jeden pár díra-elektron. Pokud není k diodě přiloženo vnější napětí, je v depletiční oblasti difuzní napětí. Díky difuznímu napětí je elektron urychlen do oblasti N a díra do oblasti P, tím vzniká driftový proud (proud v závěrném směru).
 
-Pokud dopadne foton mimo vyprázdněnou oblast PN přechodu, udělí elektronu energii, díky ní, se elektron uvolní z valenční vrstvy a stane se volným nosičem náboje. Teprve poté co se elektron dostane do depletiční oblasti, může být urychlen difuzním napětím a tím vznikne difuzní proud. Tento děj je mnohem pomalejší, než pokud foton dopadne přímo do depletiční oblasti.
+Pokud dopadne foton mimo vyprázdněnou oblast PN přechodu, udělí elektronu energii, díky které se elektron uvolní z valenční vrstvy a stane se volným nosičem náboje. Teprve poté co se elektron dostane do depletiční oblasti, může být urychlen difuzním napětím a tím vznikne difuzní proud. Tento děj je mnohem pomalejší, než pokud foton dopadne přímo do depletiční oblasti.
 
 PN diody nemají moc velkou oblast prostorového náboje, většina záření dopadá mimo oblast prostorového náboje. A elektronům trvá déle, než se dostanou do oblasti prostorového náboje, který je urychlí, aby vytvořili elektrický proud. Díky tomu nejsou vhodné pro detekci rychlých signálů, ale jejich výhodou je díky jejich nízké citlivosti nízká šumovost.
 
@@ -82,7 +82,7 @@ Integrované optické přijímače mají na jednom čipu integrovanou, kromě fo
     \caption{Blokové schéma integrovaného přijímače OSRB38C9BA}
 \end{figure}
 
-Pro konkrétnější popis rozeberu výše uvedený přijímač. Záření v okolí vlnové délky $940~\jedn{\mikro m}$ je detekováno foto-diodou a pomocí trans-impedančního zesilovače (TIA) přivedeno do přijímače. TIA funguje jako napěťový sledovač, který má velký vstupní odpor a malý výstupní odpor. Je tu proto, aby se odebíraným výkonem nezatěžovala foto-dioda.
+Pro konkrétnější popis bude popsán výše uvedený přijímač. Záření v okolí vlnové délky $940~\jedn{\mikro m}$ je detekováno foto-diodou a pomocí trans-impedančního zesilovače (TIA) přivedeno do přijímače. TIA funguje jako napěťový sledovač, který má velký vstupní odpor a malý výstupní odpor. Je tu proto, aby se odebíraným výkonem nezatěžovala foto-dioda.
 
 S TIA je signál přiváděn do zesilovače s nastavitelným zesílením (CGA). Po zesílení je z CGA přiveden na pásmovou propust (BPF) se středním kmitočtem $37,9~\jedn{kHz}$. Ta slouží k odfiltrování rušivých frekvenčních složek před demodulací, aby nevznikali parazitní intermodulační produkty.
 
