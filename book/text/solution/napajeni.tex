@@ -34,14 +34,14 @@ Odvození výstupního napětí zvyšujícího měniče pro ideální spínací 
 
 Kde $t_{OFF}$ je čas, po který je tranzistor sepnut, $t_{OFF}$ čas po který je tranzistor rozepnut, $T$ je perioda spínání a $s$ střída spínání.
 
-Ze vztahu lze vyvodit, že platí $U_2 \geq U_1$. Při reálném použití tato rovnost neplatí, jestliže je tranzistor trvale rozepnut, je napětí $U_2$ menší o úbytek na diodě a cívce. Dále ze vztahu vyplývá, že velikost výstupního napětí je závislá pouze na velikosti vstupního napětí a střídě spínání.
+Ze vztahu lze vyvodit, že platí $U_2 \geq U_1$. Při použití neideálných součástek tato rovnost neplatí, jestliže je tranzistor trvale rozepnut, je napětí $U_2$ menší o úbytek na diodě a cívce. Dále ze vztahu vyplývá, že velikost výstupního napětí je závislá pouze na velikosti vstupního napětí a střídě spínání.
 
 Řídící obvod se snaží udržovat konstantní výstupní napětí pomocí regulování střídy. Výstupní napětí je monitorováno díky zpětné vazbě realizované napěťovým děličem. Poměr rezistorů $R_{FB1}$ a $R_{RB2}$ určuje výsledné výstupní napětí.
 
 \section{Nabíječka}
 Nabíječka zajišťuje přesouvání energie z externího zdroje do akumulátoru - právě díky ní jsou akumulátory opakovatelně použitelné. Pro laser game arény je důležité, aby nabíječka byla schopná přes noc (12 hodin času) dobít akumulátory. Vezmeme-li v úvahu kapacitu akumulátoru a čas potřebný pro jeho nabití, zjistíme, že nabíječka musí být schopna nabíjet akumulátor minimálně proudem 633~\jedn{mA}, od čehož se musí odvíjet i výběr nabíjecího obvodu. Nakonec byl vybrán obvod BQ24192 od firmy Texas Instruments.
 
-BQ24192 je určený k nabíjení lithium-iontových a lithium-polymerových akumulátorů. Je založen na snižujícím spínaném měniči, dokáže pracovat od 3,9~\jedn{V} až 17~\jedn{V} napájecí napětí při nabíjecím proudu až 4,5~\jedn{A}. Je také schopen monitorovat teplotu článku pomocí termistoru. S okolím komunikuje prostřednictvím I2C sběrnice, která umožňuje nastavovat některé nabíjecí parametry.
+BQ24192 je určený k nabíjení lithium-iontových a lithium-polymerových akumulátorů. Je založen na snižujícím spínaném měniči, dokáže pracovat od napájecího napětí 3,9~\jedn{V} až 17~\jedn{V} a nabíjet proudem až 4,5~\jedn{A}. Je také schopen monitorovat teplotu článku pomocí termistoru. S okolím komunikuje prostřednictvím I2C sběrnice, která umožňuje nastavovat některé nabíjecí parametry.
 
 \begin{figure}[H]
     \begin{center}
