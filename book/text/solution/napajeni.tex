@@ -14,7 +14,7 @@ Další úkolem napájecího systému je zajistit nabíjení akumulátoru a sled
     \end{center}
     \caption{blokové schéma zvyšujícího měniče}
 \end{figure}
-Zvyšující měnič, někdy také označovaný jako boost či step up je elektrický obvod, patřící do kategorie spínaných měničů, který z vysokou účinností transformuje vstupní napětí $U_1$ na větší napětí $U_2$. Vstupní i výstupní napětí měniče jsou stejnosměrná.
+Zvyšující měnič, někdy také označovaný jako boost či step up je elektrický obvod, patřící do kategorie spínaných měničů, který z vysokou účinností transformuje vstupní napětí $U_1$ na větší napětí $U_2$. Účinnost spínaných měničů dosahuje až 99~\jedn{\%}, ztráty jsou způsobeny především přeměnou části transformované elektrické energie v teplo na spínacích prvcích a ohmickém odporu vinutí cívky. Účinnost se dá zvětšit použitím měniče, který místo diody používá tranzistor. Vstupní i výstupní napětí měniče jsou stejnosměrná.
 
 Měnič obsahuje dva akumulační prvky $L$ a $C$, které slouží k uchování energie a dva prvky aktivní $Q$ a $D$, které plní funkci spínačů. Rezistor $R_{LOAD}$ představuje zátěž.
 
@@ -24,9 +24,9 @@ Odvození výstupního napětí zvyšujícího měniče pro ideální spínací 
 \begin{eqnarray}
     i_L(t) &=& \dfrac{1}{L} \int u_L(t) \mathrm{d}t \Rightarrow u_L(t) = L \dfrac{\mathrm{d}i_L(t)}{\mathrm{d}t}
     \nonumber\\
-    \dfrac{U_1 t_{ON}}{L} &=& \dfrac{(U_2 - U_1) t_{OFF}}{L} \Rightarrow U_1 t_{ON} = (U_2 - U_1) t_{OFF}
+    \dfrac{U_1 \cdot t_{ON}}{L} &=& \dfrac{(U_2 - U_1) t_{OFF}}{L} \Rightarrow U_1 \cdot t_{ON} = (U_2 - U_1) t_{OFF}
     \nonumber\\
-    U_1 t_{ON} &=& U_2 t_{OFF} - U_1 t_{OFF} \Rightarrow U_1 T = U_2 t_{OFF}
+    U_1 \cdot t_{ON} &=& U_2 \cdot t_{OFF} - U_1 \cdot t_{OFF} \Rightarrow U_1 \cdot T = U_2 \cdot t_{OFF}
     \nonumber\\
     U_2 &=& U_1 \dfrac{T}{t_{OFF}} = \underline{\underline{U_1 \dfrac{1}{1-s}}}
     \nonumber
@@ -39,7 +39,20 @@ Ze vztahu je vidět, že napětí $U_2 \geq U_1$. Pokud použijeme reálné sou�
 Řídící obvod se snaží udržovat konstantní výstupní napětí, pomocí regulování střídy. Výstupní napětí je monitorováno pomocí zpětné vazby realizované napěťovým děličem. Poměr rezistorů $R_{FB1}$ a $R_{RB2}$ určuje výstupní napětí.
 
 \section{Nabíječka}
-TODO
+Nabíječka zajišťuje přesouvání energie z externího zdroje do akumulátoru. Díky ní jsou akumulátory opakovatelně použitelné. Pro laser game arény je důležité, aby nabíječka byla schopná přes noc (12 hodin času) dobýt akumulátory. Vezmu-li v úvahu kapacitu akumulátoru a čas potřebný pro jeho nabitý zjistím, že nabíječka musí být schopna nabíjet akumulátor minimálně proudem 633~\jedn{mA}, od toho se odvíjel i výběr nabíjecího obvodu. Nakonec byl vybrán obvod BQ24192 od firmy Texas Instruments.
+
+BQ24192 je určený k nabíjení lithium-iontových a lithium-polymerových akumulátorů. Je založen na snižujícím spínaném měniči, dokáže pracovat od 3,9~\jedn{V} až 17~\jedn{V} napájecí napětí a dokáže nabíjet proudem až 4,5~\jedn{A}. Dokáže monitorovat teplotu článku pomocí termistoru. Z okolím může komunikovat prostřednictvím I2C sběrnice, který umožňuje i nastavovat některé nabíjecí parametry.
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=\textwidth]{img/bq24192-block}
+    \end{center}
+    \caption{nabíjecí obvod BQ24192, převzato z katalogového listu výrobce}
+\end{figure}
+
+Pinem PSEL se nastaví jestli je obvod napájen z USB (vysoká úroveň) a nebo adaptéru (nízká úroveň). \Overline{CE}~ povoluje nabíjení. \Overline{PG}~ signalizuje přítomnost napájecího napětí. STAT signalizuje stav nabíjení (vysoká úroveň signalizuje dokončení nabíjení). Velmi důležitým pinem je ILIM, který slouží k nastavení maximálního nabíjecího proudu pomocí rezistoru $R_{ILIM}$.
+
+$$I_{IN MAX} = \dfrac{1~\jedn{V}}{R_{ILIM}} \cdot 530 = \dfrac{1}{180} \doteq \underline{\underline{3~\jedn{A}}}$$ \nonumber
 
 \section{Monitorování náboje}
 TODO
