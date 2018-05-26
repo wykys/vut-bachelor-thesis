@@ -1,9 +1,8 @@
 \chapter{Zabezpečení dat proti chybám}
-Při přenosu dat může dojít k jejich poškození. Abychom mohli ověřit korektnost přicházejících informací, tak je třeba zavézt bezpečnostní prostředky, které nám umožní odhalení chyb. Mezi tyto bezpečnostní prostředky patří i zabezpečovací kódy, kterými se budu v této kapitole zabývat.
-
+Při přenosu dat může dojít k jejich poškození. Abychom mohli ověřit korektnost přicházejících informací, tak je třeba zavézt bezpečnostní prostředky, které nám umožní odhalení chyb. Mezi tyto bezpečnostní prostředky patří i zabezpečovací kódy, kterými se bude práce v této kapitole zabývat.
 
 \section{Exkluzivní disjunkce}
-Někdy je možné se setkat i z pojmenováním exkluzivní součet, zkratkou XOR, případně značením $\oplus$. XOR je logická funkce, která se dá syntetizovat se základních logických funkcí AND či OR a NOT. Tato funkce často nalézá uplatnění v kryptografii, hlavně v hašovacích funkcích.
+Někdy je možné se setkat i z pojmenováním exkluzivní součet, zkratkou XOR, případně značením $\oplus$. XOR je logická funkce, která se dá syntetizovat se základních logických funkcí AND či OR a NOT. Tato funkce často nalézá uplatnění v kryptografii, především v hašovacích funkcích.
 
 \begin{table}[!h]
   \caption{Tabulka hodnot logické funkce XOR, $A$ a $B$ jsou vstupy $Y$ je výstup}
@@ -65,7 +64,7 @@ $$ P_{lichá} = \overline{ b_0 \oplus b_1 \oplus ... \oplus b_n } $$
 \end{figure}
 
 \section{Cyklický redundantní součet}
-Používá se ke kontrole, zda-li máme nepoškozená data. Na konec přenášených dat se přidá několik redundantních bitů spočítaných pomocí speciální hašovací funkce \zkratka{CRC}. Po přijetí dat se může znovu spočítat \zkratka{CRC} pro přijatá data, které porovnáme z \zkratka{CRC}, které jsme přijali. Pokud budou kontrolní součty shodné, tak jsou i přijatá data v pořádku. Další možností je spočítat \zkratka{CRC} pro celá přijatá data včetně kontrolního součtu, pokud jsou přijatá data nepoškozená,  tak dostaneme bitový vektor plný nul.
+Používá se ke kontrole, zda-li máme nepoškozená data. Na konec přenášených dat se přidá několik redundantních bitů spočítaných pomocí speciální hašovací funkce \zkratka{CRC}. Po přijetí dat se může znovu spočítat \zkratka{CRC} pro přijatá data, které porovnáme z \zkratka{CRC}, které jsme přijali. Pokud budou kontrolní součty shodné, tak jsou i přijatá data v pořádku. Další možností je spočítat \zkratka{CRC} pro celá přijatá data včetně kontrolního součtu, pokud jsou přijatá data nepoškozená, dostaneme bitový vektor plný nul.
 
 Pravděpodobnost detekce chyby pomocí CRC, $n$ je délka generačního polynomu:
 \begin{equation}
@@ -115,7 +114,7 @@ Ten teď přidáme za data reprezentující znak *. Pro ověření správnosti s
 Dvěma iteracemi algoritmu jsme dostali výsledek kýžený výsledek, takže data jsou v pořádku.
 
 \subsection{Výpočet CRC pole bajtů}
-Při přenosu pole bajtů nastává problém, jakým způsobem pro ně efektivně počítat kontrolní součet. Využívám k tomu algoritmu, který jsem převzal z \cite{crc-wiki}.
+Při přenosu pole bajtů nastává problém, jakým způsobem pro ně efektivně počítat kontrolní součet. Využíván je algoritmus převzatý z \cite{crc-wiki}.
 
 \lstinputlisting{src/crc.cpp}
 
@@ -130,4 +129,4 @@ Při přenosu pole bajtů nastává problém, jakým způsobem pro ně efektivn�
 \end{enumerate}
 
 
-Výpočet kontrolního součtu je možné zrychlit. Vzhledem k tomu, že probíhá nad známou množinou dat, tak si stačí před-počítat tabulku kontrolních součtů pro čísla $\in \langle 0; 256 \rangle$ a poté místo výpočtu jen přistupovat na daný řádek tabulky.
+Výpočet kontrolního součtu je možné zrychlit. Vzhledem k tomu, že probíhá nad známou množinou dat, stačí předpočítat tabulku kontrolních součtů pro hodnoty $\in \langle 0; 256 \rangle$ a poté místo výpočtu jen přistupovat na daný řádek tabulky.
