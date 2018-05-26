@@ -34,7 +34,7 @@ Odvození výstupního napětí zvyšujícího měniče pro ideální spínací 
 
 Kde $t_{OFF}$ je čas po který je tranzistor sepnut, $t_{OFF}$ čas po který je tranzistor rozepnut, $T$ je perioda spínání a $s$ střída spínání.
 
-Ze vztahu je vidět, že napětí $U_2 \geq U_1$. Pokud použijeme reálné součástky, tak tato rovnost neplatí pokud je tranzistor trvale rozepnut, tak napětí $U_2$ bude menší o úbytek na diodě a cívce.
+Ze vztahu je vidět, že napětí $U_2 \geq U_1$. Pokud použijeme reálné součástky, tak tato rovnost neplatí pokud je tranzistor trvale rozepnut, tak napětí $U_2$ bude menší o úbytek na diodě a cívce. Dále ze vztahu vyplývá, že velikost výstupního napětí je závislá jen na velikosti vstupního napětí a střídě spínání.
 
 Řídící obvod se snaží udržovat konstantní výstupní napětí, pomocí regulování střídy. Výstupní napětí je monitorováno pomocí zpětné vazby realizované napěťovým děličem. Poměr rezistorů $R_{FB1}$ a $R_{RB2}$ určuje výstupní napětí.
 
@@ -61,7 +61,7 @@ Monitorování náboje je důležité zejména pro obsluhu arény, aby neposlali
     \begin{center}
         \includegraphics[width=\textwidth]{img/LTC2941-block}
     \end{center}
-    \caption{blokové schéma nábojového čítače, převzato z katalogového listu výrobce}
+    \caption{blokové schéma obvodu LTC2941, převzato z katalogového listu výrobce}
 \end{figure}
 Použil jsem integrovaný obvod LTC2941 firmy Linear Technology. Tento obvod je stále připojený k akumulátoru přes snímací rezistor malé hodnoty, ze kterého v klidu odebírá proud pod $100~\jedn{\mu A}$.
 
@@ -70,4 +70,11 @@ Obvod v pravidelných časových okamžicích měří napětí na snímacím rez
 Obvod je vybaven I2C sběrnicí, takže je velmi snadné z něj vyčítat informace o náboji v systému.
 
 \section{Topologie napájecího systému}
-TODO: blokové schéma napájení.
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=\textwidth]{img/power-system}
+    \end{center}
+    \caption{blokové schéma napájecího systému}
+\end{figure}
+
+Většina bloků napájecího systému se nachází na plošném spoji (PCB) pojmenovaném back, který je umístěn na zádech hráče. Ten obstarává monitorování náboje, nabíjení akumulátoru a zvyšování napětí akumulátoru. Do všech částí vesty je přiváděno napětí 5,5~\jedn{V}, které je na výstupu zvyšujícího měniče. Poté je napětí snižováno pomocí nízko-úbytkových stabilizátorů (LDO).
