@@ -55,4 +55,19 @@ Pinem PSEL se nastaví jestli je obvod napájen z USB (vysoká úroveň) a nebo 
 $$I_{IN MAX} = \dfrac{1~\jedn{V}}{R_{ILIM}} \cdot 530 = \dfrac{1}{180} \doteq \underline{\underline{3~\jedn{A}}}$$ \nonumber
 
 \section{Monitorování náboje}
-TODO
+Monitorování náboje je důležité zejména pro obsluhu arény, aby neposlali do arény hráče z téměř vybitým akumulátorem. Zjišťovat stav akumulátoru lze například i děličem kdyby nám stačilo rozlišovat jen dva stavy, či analogově digitálním převodníkem. Tyto metody ale mají tu nevýhodu, že výstupní napětí akumulátoru se může měnit v závislosti na odebíraném proudu a vnitřním odporu akumulátoru. Obsluha pak může být zmatená z fluktuací napětí a nesprávně vyhodnotit stav akumulátoru. Proto jsem tyto metody zavrhl a rozhodl se stav vyhodnocovat z celkového náboje.
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=\textwidth]{img/LTC2941-block}
+    \end{center}
+    \caption{blokové schéma nábojového čítače, převzato z katalogového listu výrobce}
+\end{figure}
+Použil jsem integrovaný obvod LTC2941 firmy Linear Technology. Tento obvod je stále připojený k akumulátoru přes snímací rezistor malé hodnoty, ze kterého v klidu odebírá proud pod $100~\jedn{\mu A}$.
+
+Obvod v pravidelných časových okamžicích měří napětí na snímacím rezistoru a z jeho polarity určuje, jestli je akumulátor nabíjen či vybíjen a z hodnoty napětí a známého času měření dopočítává náboj.
+
+Obvod je vybaven I2C sběrnicí, takže je velmi snadné z něj vyčítat informace o náboji v systému.
+
+\section{Topologie napájecího systému}
+TODO: blokové schéma napájení.
