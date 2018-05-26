@@ -1,9 +1,10 @@
 \chapter{Závěr}
 
-Podařilo jse mi navrhnout velmi spolehlivý protokol pro přenos dat pomocí infračerveného záření. Prní verze návrhu se potýkala s problémem zahlcování detektorů shluky nul a následnou  chybnou intepretací zkreslených dat.
+Podařilo jse mi navrhnout velmi spolehlivý protokol pro přenos dat pomocí infračerveného záření. První verze návrhu se potýkala s problémem zahlcování detektorů shluky nul a následnou chybnou intepretací zkreslených dat.
 
-Druhá verze problémy odstranila návrhem nového robustního komunikačního protokolu. Navržený protokol korektně přenáší i packety plné nul, protože byla změněna reprezentace logické nuly a jedničky z vysílání a nevysílání na vyslání pulzu pevné délky, následovaným mezerou, podle jejíž délky se vyhodnotí zdali se jedná o jedničku nebo nulu. Výhodou tohoto systému je i možnost zjistit výpadek při probíhající komunikaci.
+Druhá verze problémy odstranila návrhem nového robustního komunikačního protokolu. Navržený protokol korektně přenáší i packety plné nul, protože byla změněna reprezentace logických hodnot v komunikaci. Výhodou tohoto systému je i možnost zjistit výpadek při probíhající komunikaci.
 
+% ehm... trochu podivné formulace, nevím, jak to myslíš
 Bohužel jsme v této práci nestihnul popsat kompletní návrh a tka aspoň do příloh přikládám schémata, navrženého systému.
 
 V bakalážské práci bych se chtěl zaměřit, na rozšíření routru o vlastní procesor, díky němuž se sníží nároky na řídící počítač. Dále se budu zabývat monitorováním stavu akumulátoru, snižování spotřeby elektroniky a optimalizací řídícího sowtfaru. Pokud budu vše stíhat, tak i návrhem krabiček na uchycení k vestě.
