@@ -1,8 +1,8 @@
 \chapter{Generátor zvuků}
-Zvukový generátor je důležitou součástí \zkratka{LG} vesty. Zajišťuje generování zvuků, jejichž stěžejním cílem je informování hráčů o aktuálním dělení v aréně a také zlepšují výsledný prožitek ze hry.
+Zvukový generátor je důležitou součástí \zkratka{LG} vesty. Zajišťuje generování zvuků, jejichž stěžejním cílem je informování hráčů o aktuálním dělení v aréně, a také zlepšují výsledný prožitek ze hry.
 
 \section{Požadavky na generátor}
-Pro generátor je jedním z nejdůležitějších požadavků jeho paměť alespoň 800~\jedn{kB}, aby se do ní vešli všechny vzorky zvuků i firmware.  Možnost jej řídit pomocí \zkratka{UART} a jednoduchá indikace přehrávání a možnost snížit odběr generátoru pomocí GPIO.
+Pro generátor je jedním z nejdůležitějších požadavků jeho paměť alespoň 800~\jedn{kB}, aby se do ní vešly všechny vzorky zvuků i firmware.  Možnost jej řídit pomocí jednotky UART a jednoduchá indikace přehrávání a možnost snížit odběr generátoru pomocí GPIO.
 
 %\section{Převody ADC DAC}
 %TODO
@@ -16,7 +16,7 @@ Pro generátor je jedním z nejdůležitějších požadavků jeho paměť alesp
     \caption{blokové znázornění zvukového generátoru}
 \end{figure}
 
-Generátor je založen na mikroprocesoru STM32F405, který je vybavený 1~\jedn{MB} paměti FLASH, která je využita, z velké části, k uložení vzorků zvuků. Ve zbytku paměti je uložen firmware generátoru. Výše zmíněný mikroprocesor, také obsahuje mimo jiné 12~\jedn{b} DAC, až 32\jedn~{b} čítače / časovače, DMA, či
+Generátor je založen na mikroprocesoru STM32F405, který je vybavený 1~\jedn{MB} paměti FLASH, která je využita, z velké části, k uložení vzorků zvuků. Ve zbytku paměti je uložen firmware generátoru. Výše zmíněný mikroprocesor, také obsahuje mimo jiné 12\jedn{b} DAC, až 32\jedn{b} čítače / časovače, DMA, či
 UART.
 
 Zvuky jsou v paměti reprezentovány vzorky. Tedy polem kvantovaných hodnot snímaných v diskrétních časech, které popisují zvukové vlny.

@@ -3,7 +3,7 @@ Napájecí systém vesty má za úkol poskytovat elektrický výkon v požadovan
 
 Primárním zdrojem energie vesty je lithium-polymerový akumulátor 2XLP7836140, s kapacitou 7600~\jedn{mAh}, který by měl zajistit dostatečnou časovou výdrž vesty. Akumulátor je vybaven ochrannými obvody proti přílišnému vybití pod hranici 2,75~\jedn{V} a přebití přes 4,30~\jedn{V}.
 
-Úbytky napětí na modré, zelené LED 3,4~\jedn{V} a úbytkům vznikajících na spínacích prvcích při regulování jasu LED, dosahují větší hodnoty než je napětí akumulátoru, bylo tedy nutné navrhnout napájecí systém založený na zvyšujícím měniči napětí.
+Úbytky napětí na modré, zelené LED 3,4~\jedn{V} a úbytky vznikající na spínacích prvcích při regulování jasu LED, dosahují větší hodnoty než je napětí akumulátoru, bylo tedy nutné navrhnout napájecí systém založený na zvyšujícím měniči napětí.
 
 Dalším úkolem napájecího systému je zajistit nabíjení akumulátoru a sledování stavu akumulátoru.
 
@@ -64,7 +64,7 @@ Pinem PSEL se nastaví jestli je obvod napájen z USB (vysoká úroveň) a nebo 
 $$I_{IN MAX} = \dfrac{1~\jedn{V}}{R_{ILIM}} \cdot 530 = \dfrac{1}{180} \doteq \underline{\underline{3~\jedn{A}}}$$ \nonumber
 
 \section{Monitorování náboje}
-Monitorování stavu nabití akumulátoru je důležité zejména pro obsluhu arény, aby nedošlo k nechtěnému vypnutí vesty při aktivní hře. Signalizovat stav akumulátoru lze například i prostým děličem napětí, v případě, kdy by postačovalo rozlišování pouze dvou stavů, jinak analogově digitálním převodníkem. Tyto metody ale mají nevýhodu, že výstupní napětí akumulátoru se může měnit v závislosti na odebíraném proudu a vnitřním odporu akumulátoru. Obsluha pak může být mystifikována z fluktuací napětí a a může nesprávně vyhodnotit reální stav akumulátoru. Proto tyto metody byly zavrženy a stav je vyhodnocován z celkového náboje.
+Monitorování stavu nabití akumulátoru je důležité zejména pro obsluhu arény, aby nedošlo k nechtěnému vypnutí vesty při aktivní hře. Signalizovat stav akumulátoru lze například i prostým děličem napětí, v případě, kdy by postačovalo rozlišování pouze dvou stavů, jinak analogově digitálním převodníkem. Tyto metody ale mají nevýhodu, že výstupní napětí akumulátoru se může měnit v závislosti na odebíraném proudu a vnitřním odporu akumulátoru. Obsluha pak může být mystifikována z fluktuací napětí a a může nesprávně vyhodnotit reálný stav akumulátoru. Proto tyto metody byly zavrženy a stav je vyhodnocován z celkového náboje.
 
 \begin{figure}[H]
     \begin{center}
@@ -74,7 +74,7 @@ Monitorování stavu nabití akumulátoru je důležité zejména pro obsluhu ar
 \end{figure}
 Použil jsem integrovaný obvod LTC2941 firmy Linear Technology. Tento obvod je stále připojený k akumulátoru přes snímací rezistor malé hodnoty, ze kterého v klidu odebírá proud pod $100~\jedn{\mu A}$.
 
-Obvod v pravidelných časových intervalech měří napětí na snímacím rezistoru a z jeho polarity určuje, jestli je akumulátor nabíjen či vybíjen a z hodnoty napětí a známého času měření dopočítává náboj.
+Obvod v pravidelných časových intervalech měří napětí na snímacím rezistoru a z jeho polarity určuje, jestli je akumulátor nabíjen či vybíjen, a z hodnoty napětí a známého času měření dopočítává náboj.
 
 Obvod je vybaven I2C sběrnicí, takže je velmi snadné z něj vyčítat informace o náboji v systému.
 

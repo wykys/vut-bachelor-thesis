@@ -1,5 +1,5 @@
 \chapter{Návrh systému pro infračervený přenos dat}
-\zkratka{LG} je založeno na optickém přenosu dat ze zbraně do vesty. Tato data jsou naprosto klíčová, nesou v sobě informace o tom, kdo je vyslal, a chyba při přenosu nebo interpretaci těchto dat by mohla být fatální na stav hry. V krajním případě by mohla způsobit přičtení bodů špatnému hráči, což by při kumulaci způsobilo naprostou degradaci hry. Proto je potřeba se problematikou optického přenosu dat zabývat pečlivě.
+\zkratka{LG} je založeno na optickém přenosu dat ze zbraně do vesty. Tato data jsou naprosto klíčová, nesou v sobě informace o tom, kdo je vyslal, a chyba při přenosu nebo interpretaci těchto dat by mohla mít fatální vliv na stav hry. V krajním případě by mohla způsobit přičtení bodů špatnému hráči, což by při kumulaci způsobilo naprostou degradaci hry. Proto je potřeba se problematikou optického přenosu dat zabývat pečlivě.
 
 Při \zkratka{LG} jsou data přenášena v infračerveném pásmu elektromagnetických vln, což odpovídá vlnovým délkám $\lambda \in \langle 760~\jedn{nm};~1~\jedn{mm}\rangle$. Tyto vlnové délky jsou pro lidské oko nedetekovatelné, což je podstatné k zachování smyslu a atmosféry hry.
 
@@ -23,7 +23,7 @@ Z dostupných součástek na trhu byl hledán kompromis mezi cenou, výkonem a v
 
 IR lasery se při laser game příliš často nepoužívají, protože jejich paprsek je velmi úzký a nevytvořil by se kužel o dostatečném průměru, který by zasáhl hráče. Laser by se musel doplnit dodatečnou optikou, což by vyžadovalo další náklady. Proto se pro přenos dat využívají IR LED. U těchto diod je třeba vyřešit problém zcela opačný - výběr LED s dostatečně malým vyzařovacím úhlem.
 
-Při experimentech s IR LED s různými vyzařovacími úhly se mi pro tento účel jevily jako ideální diody s vyzařovacím úhlem $12^\circ$, vložené do $10$~\jedn{cm} trubičky. Diody s menším vyzařovacím úhlem byly problematické při kratších vzdálenostech, protože vyzařovaný kužel byl příliš malý.
+Při experimentech s IR LED s různými vyzařovacími úhly se mi pro tento účel jevily jako ideální diody s vyzařovacím úhlem $12^\circ$, vložené do $10$\jedn{cm} trubičky. Diody s menším vyzařovacím úhlem byly problematické při kratších vzdálenostech, protože vyzařovaný kužel byl příliš malý.
 
 Důležitým parametrem IR LED je vlnová délka vyzařovaného záření - volba závisí na použitém přijímači. Pokud by měly vysílač s přijímačem rozdílnou vlnovou délku, nastával by útlum přenášeného signálu. Vybrána byla nejrozšířenější vlnová délka $940~\jedn{nm}$.
 
@@ -51,7 +51,7 @@ Tento přijímač očekává signál modulovaný na nosný signál $37,9~\jedn{k
 \section{Přenos IR signálu}
 IR signál je přenášen od vysílače vzduchem k přijímači. IR signál má vlastnost, že se dobře odráží od bílých stěn, to lze pozorovat například na dálkových ovladačích ke spotřební elektronice, které fungují na stejných principech, pokud ovladač namíříme na bílý strop, IR záření se od něj odrazí a dostane se až k detektoru spotřebiče. Proto jsou stěny v LG arénách tmavé, aby záření pohlcovaly.
 
-Přenášený IR signál musí být modulovaný na nosnou vlnu. Pokud by nebyl modulovaný, stačilo by na detektor jen posvítit, například ze zářivky a detektor by toto záření interpretoval jako náš požadovaný signál, přestože by se jednalo o rušení. Bohužel, namodulování signálu na nosnou vlnu nezabrání veškerému rušení do systému proniknout, navíc existují i LED osvětlení, jejichž budiče pracují právě na frekvenci nosné frekvence systému vest, čímž osvětlení kompletně zahltí komunikační kanál rušením. Proto je důležité v aréně používat kvalitní světelné zdroje s měniči pracujícími na odlišných-vyšších frekvencích.
+Přenášený IR signál musí být modulovaný na nosnou vlnu. Pokud by nebyl modulovaný, stačilo by na detektor jen posvítit, například ze zářivky, a detektor by toto záření interpretoval jako náš požadovaný signál, přestože by se jednalo o rušení. Bohužel, namodulování signálu na nosnou vlnu nezabrání veškerému rušení proniknout do systému, navíc existují i LED osvětlení, jejichž budiče pracují právě na frekvenci odpovídající nosné frekvence systému vest, čímž osvětlení kompletně zahltí komunikační kanál rušením. Proto je důležité v aréně používat kvalitní světelné zdroje s měniči pracujícími na odlišných-vyšších frekvencích.
 
 \section{První návrh systému IR přenosu dat}
 \begin{figure}[H]
@@ -64,12 +64,12 @@ Přenášený IR signál musí být modulovaný na nosnou vlnu. Pokud by nebyl m
 \subsection{Vysílač}
 Vysílač je založen na modulování UART na PWM, které generuje mikrokontrolér. Frekvence PWM je nakonfigurována na hodnotu $37,9~\jedn{kHz}$, protože na ni má IR detektor největší zisk. Změna střídy nastavuje dosvit vysílače.
 
-Protože UART má klidový stav v logické stavu 1, je invertován pomocí hradla negace a s pomocí hradla AND namodulován na PWM. Kdyby nebyl invertován, vysílací LED by většinu času strávila vysíláním, což by zbytečně zvýšilo spotřebu a navíc by mohlo dojít k zahlcení detektoru.
+Protože UART má klidový stav v logickém stavu 1, je invertován pomocí hradla negace a s pomocí hradla AND namodulován na PWM. Kdyby nebyl invertován, vysílací LED by většinu času strávila vysíláním, což by zbytečně zvýšilo spotřebu a navíc by mohlo dojít k zahlcení detektoru.
 
 \subsection{Přijímač}
 Přijímač k dekódování přijatého signálu využívá UART integrovaný v mikrokontroléru. Klidový stav detektoru je díky integrovanému pull-up odporu v logické jedničce, pokud detekuje signál, je výstup stažen do logické nuly. Tohle chování detektoru je pro systém vhodné, protože vysíláme pouze nulové bity. Detektor je opatřen RC článkem, aby do něj nevnikalo rušení z napájecího vedení.
 
-UART byl nastaven na přenosovou rychlost $2400~\jedn{bps}$. Na jeden bit trvá přibližně $416~\jedn{\mikro s}$. Perioda jednoho PWM pulzu je $23~\jedn{\mikro s}$, tedy na jeden bit připadá $16$ PWM pulzů. Vzhledem k toleranci detektoru je patrná příčina vznikání chyb při zahlcení, zkrátka přenosová rychlost je na použitý detektor příliš vysoká. Experimentálně byla vyzkoušena i nejnižší standardní přenosová rychlost $1200~\jedn{bps}$ - jeden bit tedy trval $832~\jedn{\mikro s}$. Ale stále při posílání dat s velkým počtem nul docházelo velmi často k chybám - bylo možné ještě snižovat přenosovou rychlost, ale zahlcování detektoru by tím nebylo sníženo - proto bylo rozhodnuto o navrhnutí vlastního komunikačního protokolu.
+UART byl nastaven na přenosovou rychlost $2400~\jedn{bps}$. Jeden bit trvá přibližně $416~\jedn{\mikro s}$. Perioda jednoho PWM pulzu je $23~\jedn{\mikro s}$, tedy na jeden bit připadá $16$ PWM pulzů. Vzhledem k toleranci detektoru je patrná příčina vznikání chyb při zahlcení, zkrátka přenosová rychlost je na použitý detektor příliš vysoká. Experimentálně byla vyzkoušena i nejnižší standardní přenosová rychlost $1200~\jedn{bps}$ - jeden bit tedy trval $832~\jedn{\mikro s}$. Ale stále při posílání dat s velkým počtem nul docházelo velmi často k chybám - bylo možné ještě snižovat přenosovou rychlost, ale zahlcování detektoru by tím nebylo sníženo - proto bylo rozhodnuto o navrhnutí vlastního komunikačního protokolu.
 
 \subsection{Zhodnocení systému}
 Tato koncepce přenosu není příliš spolehlivá. Pokud se vysílají data, která obsahují velké množství nul, po několika paketech dojde k zahlcení detektoru. To se projevuje tak, že se projeví tolerance detektoru $\pm200~\jedn{\mikro s}$, která deformuje přijímaný signál. UART tyto data poté dekóduje s velkou chybovostí. Díky CRC kontrole se sice vyhodnotí, že data jsou chybná, tudíž nedojde k usmrcení zasaženého hráče a přičtení bodů špatnému hráči, ale pokud hráč protihráče zasáhl a on přesto žije, degraduje to hru. Pokud se přeruší část rámce (poslední byte) při přenosu, UART tuto chybu neodhalí a od přerušení spojení nabude zbytek bitů hodnotu jedna.
