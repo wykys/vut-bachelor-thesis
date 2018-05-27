@@ -2,7 +2,7 @@
 Zvukový generátor je důležitou součástí \zkratka{LG} vesty. Zajišťuje generování zvuků, jejichž stěžejním cílem je informování hráčů o aktuálním dělení v aréně a také zlepšují výsledný prožitek ze hry.
 
 \section{Požadavky na generátor}
-Pro generátor je jedním z nejdůležitějších požadavků jeho paměť alespoň 1~\jedn{MB} možnost jej řídit pomocí \zkratka{UART} a jednoduchá indikace přehrávání a možnost snížit odběr generátoru pomocí GPIO.
+Pro generátor je jedním z nejdůležitějších požadavků jeho paměť alespoň 800~\jedn{kB}, aby se do ní vešli všechny vzorky zvuků i firmware.  možnost jej řídit pomocí \zkratka{UART} a jednoduchá indikace přehrávání a možnost snížit odběr generátoru pomocí GPIO.
 
 \section{Převody ADC DAC}
 TODO
@@ -25,7 +25,7 @@ Pokud chceme obnovit původní signál, je třeba tyto vzorky signálu ve stejn�
 
 Následně je třeba signál obnovit pomocí rekonstrukčního (anti-aliasingového) filtru, tedy filtru typu dolní propust. Ten ze signálu odstraní nežádoucí spektrální složky, které vznikají skoky z hodnoty jednoho vzorku na vzorek druhý.
 
-Poté je signál zesílen ve výkonovém integrovaném audio zesilovači LM4861 a přiveden do reproduktoru, kde dojde k jeho převodu na mechanické vlnění.
+Poté je signál zesílen ve výkonovém integrovaném audio zesilovači LM4861 a přiveden do reproduktoru, kde dojde k jeho převodu na akustický signál.
 
 \section{Komunikační protokol}
 S generátorem se jednoduše komunikuje pomocí UARTu. Během komunikace se rozlišuje mezi třemi typy příkazů:
