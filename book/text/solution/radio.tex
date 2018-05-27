@@ -27,6 +27,6 @@ Rámec začíná 8~\jedn{b} adresou, která specifikuje příjemce, resp. odesí
     \begin{center}
         \includegraphics[width=\textwidth]{img/hm-trp}
     \end{center}
-    \caption{Blokové schéma jednoduchého komunikačního řetězce z moduly HM-TRP}
+    \caption{Blokové schéma komunikačního řetězce z moduly HM-TRP}
 \end{figure}
-Rádiové rozhraní je postavené na modulech HM-TRP firmy Hope Microelectronics. Moduly mají programovatelnou pracovní frekvenci, systém používá 868~\jedn{MHz}. Dále mají nastavitelný vysílací výkon $\in \langle 1; 20 \rangle~\jedn{dBm}$. Moduly pracují v poloduplexním módu, tedy v jeden okamžik mohou buďto přijímat nebo vysílat. Dále jsou moduly vybaveny rozhraním UART, umožnujícím snadnou komunikaci z modulem (přijímat a vysílat přenášená data a také modul konfigurovat). Moduly poskytují pouze možnost vysílat a přijímat data, která jsou do něj pomocí UART poslána, avšak negarantují úspěšnost doručení dat na místo určení. Tento problém je třeba řešit na vyšší vrstě komunikace.
+Rádiové rozhraní je postavené na modulech HM-TRP firmy Hope Microelectronics. Moduly mají programovatelnou pracovní frekvenci, systém používá 868~\jedn{MHz}. Dále mají nastavitelný vysílací výkon $\in \langle 1; 20 \rangle~\jedn{dBm}$. Moduly pracují v poloduplexním módu, tedy v jeden okamžik mohou buďto přijímat nebo vysílat. Dále jsou moduly vybaveny rozhraním UART, umožnujícím snadnou komunikaci z modulem (přijímat a vysílat přenášená data a také modul konfigurovat). Moduly poskytují pouze možnost vysílat a přijímat data, která jsou do něj pomocí UART poslána, avšak negarantují úspěšnost doručení dat na místo určení. Tento problém je třeba řešit na vyšší vrstvě komunikace.

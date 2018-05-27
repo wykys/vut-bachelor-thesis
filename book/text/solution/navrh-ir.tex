@@ -62,17 +62,17 @@ Přenášený IR signál musí být modulovaný na nosnou vlnu. Pokud by nebyl m
 \end{figure}
 
 \subsection{Vysílač}
-Vysílač je založen na modulování \zkratka{UART} na \zkratka{PWM}, které generuje mikrokontrolér. Frekvence PWM je nakonfigurována na hodnotu $37,9~\jedn{kHz}$, protože na ni má IR detektor největší zisk. Změna střídy nastavuje dosvit vysílače.
+Vysílač je založen na modulování UART na PWM, které generuje mikrokontrolér. Frekvence PWM je nakonfigurována na hodnotu $37,9~\jedn{kHz}$, protože na ni má IR detektor největší zisk. Změna střídy nastavuje dosvit vysílače.
 
 Protože UART má klidový stav v logické stavu 1, je invertován pomocí hradla negace a s pomocí hradla AND namodulován na PWM. Kdyby nebyl invertován, vysílací LED by většinu času strávila vysíláním, což by zbytečně zvýšilo spotřebu a navíc by mohlo dojít k zahlcení detektoru.
 
 \subsection{Přijímač}
-Přijímač k dekódování přijatého signálu využívá UART integrovaný v mikrokontroléru. Klidový stav detektoru je díky integrovanému pull-up odporu v logické jedničce, pokud detekuje signál, je výstup stáhnut do logické nuly. Tohle chování detektoru je pro systém vhodné, protože vysíláme pouze nulové bity. Detektor je opatřen RC článkem, aby do něj nevnikalo rušení z napájecího vedení.
+Přijímač k dekódování přijatého signálu využívá UART integrovaný v mikrokontroléru. Klidový stav detektoru je díky integrovanému pull-up odporu v logické jedničce, pokud detekuje signál, je výstup stažen do logické nuly. Tohle chování detektoru je pro systém vhodné, protože vysíláme pouze nulové bity. Detektor je opatřen RC článkem, aby do něj nevnikalo rušení z napájecího vedení.
 
-UART byl nastaven na přenosovou rychlost $2400~\jedn{bps}$. Na jeden bit trvá přibližně $416~\jedn{\mikro s}$. Perioda jednoho PWM pulzu je $23~\jedn{\mikro s}$, tedy na jeden bit připadá $16$ PWM pulzů. Vzhledem k toleranci detektoru je patrná příčina vznikání chyb při zahlcení, zkrátka přenosová rychlost je na použitý detektor příliš vysoká. Experimentálně byla vyzkoušena i nejnižší standardní přenosovou rychlost $1200~\jedn{bps}$ - jeden bit tedy trval $832~\jedn{\mikro s}$. Ale stále při posílání dat s velkým počtem nul docházelo velmi často k chybám - bylo možné ještě snižovat přenosovou rychlost, ale zahlcování detektoru by tím nebylo sníženo - proto bylo rozhodnuto o navrhnoutí vlatního komunikačního protokolu.
+UART byl nastaven na přenosovou rychlost $2400~\jedn{bps}$. Na jeden bit trvá přibližně $416~\jedn{\mikro s}$. Perioda jednoho PWM pulzu je $23~\jedn{\mikro s}$, tedy na jeden bit připadá $16$ PWM pulzů. Vzhledem k toleranci detektoru je patrná příčina vznikání chyb při zahlcení, zkrátka přenosová rychlost je na použitý detektor příliš vysoká. Experimentálně byla vyzkoušena i nejnižší standardní přenosová rychlost $1200~\jedn{bps}$ - jeden bit tedy trval $832~\jedn{\mikro s}$. Ale stále při posílání dat s velkým počtem nul docházelo velmi často k chybám - bylo možné ještě snižovat přenosovou rychlost, ale zahlcování detektoru by tím nebylo sníženo - proto bylo rozhodnuto o navrhnutí vlastního komunikačního protokolu.
 
 \subsection{Zhodnocení systému}
-Tato koncepce přenosu není příliš spolehlivá. Pokud se vysílají data, která obsahují velké množství nul, po několika paketech dojde k zahlcení detektoru. To se projevuje tak, že se projeví tolerance detektoru $\pm200~\jedn{\mikro s}$, která deformuje přijímaný signál. UART tyto data poté dekóduje s velkou chybovostí. Díky CRC kontrole se sice vyhodnotí, že data jsou chybná, tudíž nedojde k usmrcení zasaženého hráče a přičtení bodů špatnému hráči, ale pokud hráč protihráče zasáhl a on přesto žije, degraduje to hru. Pokud se přeruší část packetu (poslední byte) při přenosu, UART tuto chybu neodhalí a od přerušení spojení nabude zbytek bitů hodnotu jedna.
+Tato koncepce přenosu není příliš spolehlivá. Pokud se vysílají data, která obsahují velké množství nul, po několika paketech dojde k zahlcení detektoru. To se projevuje tak, že se projeví tolerance detektoru $\pm200~\jedn{\mikro s}$, která deformuje přijímaný signál. UART tyto data poté dekóduje s velkou chybovostí. Díky CRC kontrole se sice vyhodnotí, že data jsou chybná, tudíž nedojde k usmrcení zasaženého hráče a přičtení bodů špatnému hráči, ale pokud hráč protihráče zasáhl a on přesto žije, degraduje to hru. Pokud se přeruší část rámce (poslední byte) při přenosu, UART tuto chybu neodhalí a od přerušení spojení nabude zbytek bitů hodnotu jedna.
 
 \section{Druhý návrh systému IR přenosu dat}
 
@@ -85,10 +85,10 @@ Tato koncepce přenosu není příliš spolehlivá. Pokud se vysílají data, kt
 
 Tento systém vznikl jako náhrada systému předchozího. Je navržen tak, aby odolával problémům se shluky nul a korektně dekódoval data i při jejich deformaci o $\pm200~\jedn{\mikro s}$.
 
-Systém už není založen na modulování protokolu UART na PWM signál. Byl inspirován komunikačními protokoly dálkových ovladačů, které jsou robustní a spolehlivé. Pro přenos byl navrhnut vlastní komunikační protokol - jak logická jednička, tak nula jsou reprezentovány pulzem a charakteristickou mezerou, takže pokud dojde ke ztrátě části packetu, problém je odhalen, protože dojde k porušení podmínek komunikačního protokolu.
+Systém už není založen na modulování protokolu UART na PWM signál. Byl inspirován komunikačními protokoly dálkových ovladačů, které jsou robustní a spolehlivé. Pro přenos byl navrhnut vlastní komunikační protokol - jak logická jednička, tak nula jsou reprezentovány pulzem a charakteristickou mezerou, takže pokud dojde ke ztrátě části rámce, problém je odhalen, protože dojde k porušení podmínek komunikačního protokolu.
 
 \subsection{Komunikační protokol}
-Komunikace začíná odesláním startovacího impulzu, poté následuje startovací mezera. Po této sekvenci následuje 24 period začínajících vždy datovým pulsem, který má pevnou délku, následovaným mezerou, která definuje zda-li se přenáší logická jednička či nula. Po dokončení posílání datových bitů následuje ukončovací pulz. Jednotlivé packety jsou od sebe navíc odděleny mezerou, která má definovanou minimální délku. Při vyhodnocování se počítá s tolerancí $\pm250~\jedn{\mikro s}$, což s rezervou pokryje toleranci optického přijímače.
+Komunikace začíná odesláním startovacího impulzu, poté následuje startovací mezera. Po této sekvenci následuje 24 period začínajících vždy datovým pulsem, který má pevnou délku, následovaným mezerou, která definuje zda-li se přenáší logická jednička či nula. Po dokončení posílání datových bitů následuje ukončovací pulz. Jednotlivé rámce jsou od sebe navíc odděleny mezerou, která má definovanou minimální délku. Při vyhodnocování se počítá s tolerancí $\pm250~\jedn{\mikro s}$, což s rezervou pokryje toleranci optického přijímače.
 
 \begin{table}[H]
   \caption{Definice časování komunikačního protokolu}
@@ -119,7 +119,7 @@ Komunikace začíná odesláním startovacího impulzu, poté následuje startov
 \subsection{Zhodnocení}
 Tento protokol je spolehlivý, povedlo se jím opravit všechny nedostatky, kterými trpěla první navržená verze. Navíc došlo ke zjednodušení HW. V přijímači už není potřeba mít hradlo negace - z HW by se mohlo vypustit i hradlo AND a nahradit jej hradlem NAND, které je součástí IRTIM (IR timeru, který vznikne spojením timeru 16 a 17) integrovaným přímo v některých MCU řady STM32F0. Pro vysílač ale byl vybrán MCU, který integrovaným NAND hradlem nedisponuje.
 
-Maximální doba přenosu jednoho rámce (plného logických jedniček), trvá $86,2~\jedn{ms}$. Minimální doba přenosu rámce (plného nul) je $71,8~\jedn{ms}$, maximální přenosová rychlost je $334~\jedn{bps}$ a minimální přenosová rychlost je $278~\jedn{bps}$. Dosažené přenosové rychlosti jsou sice mnohem nižší než v předchozí verzi, ale vzhledem k přenesenému objemu dat $24~\jedn{b}$ po stisku spoušti, je doba přenosu přijatelná.
+Maximální doba přenosu jednoho rámce (plného logických jedniček), trvá $86,2~\jedn{ms}$. Minimální doba přenosu rámce (plného nul) je $71,8~\jedn{ms}$, maximální přenosová rychlost je $334~\jedn{bps}$ a minimální přenosová rychlost je $278~\jedn{bps}$. Dosažené přenosové rychlosti jsou sice mnohem nižší než v předchozí verzi, ale vzhledem k přenesenému objemu dat $24~\jedn{b}$ po stisku spouště, je doba přenosu přijatelná.
 
 Případné navýšení datové propustnosti protokolu by bylo možné pomocí snížení mezery mezi rámci.
 
@@ -127,5 +127,5 @@ Případné navýšení datové propustnosti protokolu by bylo možné pomocí s
     %\begin{center}
     %    \includegraphics[height=0.97\textheight]{img/model-ir-komunikace}
     %\end{center}
-    %\caption{simulace časových průběhů komunikačního protokolu při přenosu nulového packetu}
+    %\caption{Simulace časových průběhů komunikačního protokolu při přenosu nulového packetu}
 %\end{figure}

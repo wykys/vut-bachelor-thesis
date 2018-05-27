@@ -1,5 +1,5 @@
 \chapter{Zabezpečení dat proti chybám}
-Při přenosu dat může dojít k jejich poškození. Abychom mohli ověřit korektnost přicházejících informací, tak je třeba zavézt bezpečnostní prostředky, které nám umožní odhalení chyb. Mezi tyto bezpečnostní prostředky patří i zabezpečovací kódy, kterými se bude práce v této kapitole zabývat.
+Při přenosu dat může dojít k jejich poškození. Abychom mohli ověřit korektnost přicházejících informací, tak je třeba zavést bezpečnostní prostředky, které nám umožní odhalení chyb. Mezi tyto bezpečnostní prostředky patří i zabezpečovací kódy, kterými se bude práce v této kapitole zabývat.
 
 %\section{Exkluzivní disjunkce}
 %Někdy je možné se setkat i z pojmenováním exkluzivní součet, zkratkou XOR, případně značením $\oplus$. XOR je logická funkce, která se dá syntetizovat se základních logických funkcí AND či OR a NOT. Tato funkce často nalézá uplatnění v kryptografii, především v hašovacích funkcích.
@@ -100,7 +100,7 @@ Generační polynom posunujeme doprava, dokud se opět nepřekrývají jedničky
 \end{eqnarray}
 Vynulování jedniček na pozici dat dosáhneme hned při druhém opakování. Výsledkem kontrolního součtu je tedy bitový vektor $(1000)_2$.
 
-Ten teď přidáme za data reprezentující znak *. Pro ověření správnosti spočítáme kontrolní součet, s tím rozdílem, že už nebudeme přidávat za data další čtyři nulové bity. Pokud nám vyjde aplikováním výše popsaného algoritmu nula, tak jsme postupovali správně.
+Ten teď přidáme za data reprezentující znak *. Pro ověření správnosti spočítáme kontrolní součet s tím rozdílem, že už nebudeme přidávat za data další čtyři nulové bity. Pokud nám vyjde aplikováním výše popsaného algoritmu nula, tak jsme postupovali správně.
 \begin{eqnarray}
     (0010~1010~~~1000)_2  & \nonumber\\\underline{\oplus
     (0010~1000~~~0000)_2} & \nonumber\\
@@ -111,7 +111,7 @@ Ten teď přidáme za data reprezentující znak *. Pro ověření správnosti s
     (0000~0010~~~1000)_2} & \nonumber\\
     (0000~0000~~~0000)_2  & \nonumber
 \end{eqnarray}
-Dvěma iteracemi algoritmu jsme dostali výsledek kýžený výsledek, takže data jsou v pořádku.
+Dvěma iteracemi algoritmu jsme dostali kýžený výsledek, takže data jsou v pořádku.
 
 \subsection{Výpočet CRC pole bajtů}
 Při přenosu pole bajtů nastává problém, jakým způsobem pro ně efektivně počítat kontrolní součet. Využíván je algoritmus převzatý z \cite{crc-wiki}.

@@ -12,7 +12,7 @@ Dalším úkolem napájecího systému je zajistit nabíjení akumulátoru a sle
     \begin{center}
         \includegraphics[width=\textwidth]{img/boost}
     \end{center}
-    \caption{blokové schéma zvyšujícího měniče}
+    \caption{Blokové schéma zvyšujícího měniče}
 \end{figure}
 Zvyšující měnič, někdy také označovaný jako boost či step up, je elektrický obvod, patřící do kategorie spínaných měničů, které s vysokou účinností transformují vstupní napětí $U_1$ na vyšší napětí $U_2$. Účinnost spínaných měničů dosahuje až 99~\jedn{\%}, ztráty jsou způsobeny především přeměnou části transformované elektrické energie v teplo na spínacích prvcích a ohmickém odporu vinutí cívky. Účinnost se dá zvýšit použitím měniče, který místo diody používá tranzistor. Vstupní i výstupní napětí měniče jsou stejnosměrná.
 
@@ -83,7 +83,7 @@ Obvod je vybaven I2C sběrnicí, takže je velmi snadné z něj vyčítat inform
     \begin{center}
         \includegraphics[width=\textwidth]{img/power-system}
     \end{center}
-    \caption{blokové schéma napájecího systému}
+    \caption{Blokové schéma napájecího systému}
 \end{figure}
 
 Většina bloků napájecího systému se nachází na plošném spoji (PCB) pojmenovaném back, který je umístěn na zádech hráče. Ten obstarává monitorování náboje, nabíjení akumulátoru a zvyšování napětí akumulátoru. Do všech částí vesty je přiváděno napětí 5,5~\jedn{V}, které je na výstupu zvyšujícího měniče. Napětí je dále snižováno pomocí nízko-úbytkových stabilizátorů (LDO).
