@@ -1,37 +1,37 @@
 \chapter{Zabezpečení dat proti chybám}
 Při přenosu dat může dojít k jejich poškození. Abychom mohli ověřit korektnost přicházejících informací, tak je třeba zavézt bezpečnostní prostředky, které nám umožní odhalení chyb. Mezi tyto bezpečnostní prostředky patří i zabezpečovací kódy, kterými se bude práce v této kapitole zabývat.
 
-\section{Exkluzivní disjunkce}
-Někdy je možné se setkat i z pojmenováním exkluzivní součet, zkratkou XOR, případně značením $\oplus$. XOR je logická funkce, která se dá syntetizovat se základních logických funkcí AND či OR a NOT. Tato funkce často nalézá uplatnění v kryptografii, především v hašovacích funkcích.
-
-\begin{table}[!h]
-  \caption{Tabulka hodnot logické funkce XOR, $A$ a $B$ jsou vstupy $Y$ je výstup}
-  \begin{center}
-  	\small
-	  \begin{tabular}{|c|c||c|}
-	    \hline
-	    A & B & Y \\
-	    \hline\hline
-	    0 & 0 & 0 \\
-	    \hline
-	    0 & 1 & 1 \\
-	    \hline
-	    1 & 0 & 1 \\
-	    \hline
-	    1 & 1 & 0 \\
-	    \hline
-	  \end{tabular}
-  \end{center}
-\end{table}
-
-\begin{itemize}
-    \item Pokud $A = 0$, tak $Y = B$.
-    \item Pokud $A = 1$, tak $Y = \overline{B}$, vznikne nám tedy negace.
-    \item Výsledkem  $A \oplus B $ je logická jednička, pokud se její vstupy liší.
-    \item XOR je funkce komutativní, takže nezáleží na pořadí dílčích kroků, to znamená, že $(A \oplus B) \oplus C = A \oplus (B \oplus C)$.
-\end{itemize}
-
-$$ Y = A \oplus B = \overline{A}B + A\overline{B} = (\overline{A} + \overline{B}) (A + B) $$
+%\section{Exkluzivní disjunkce}
+%Někdy je možné se setkat i z pojmenováním exkluzivní součet, zkratkou XOR, případně značením $\oplus$. XOR je logická funkce, která se dá syntetizovat se základních logických funkcí AND či OR a NOT. Tato funkce často nalézá uplatnění v kryptografii, především v hašovacích funkcích.
+%
+%\begin{table}[!h]
+%  \caption{Tabulka hodnot logické funkce XOR, $A$ a $B$ jsou vstupy $Y$ je výstup}
+%  \begin{center}
+%  	\small
+%	  \begin{tabular}{|c|c||c|}
+%	    \hline
+%	    A & B & Y \\
+%	    \hline\hline
+%	    0 & 0 & 0 \\
+%	    \hline
+%	    0 & 1 & 1 \\
+%	    \hline
+%	    1 & 0 & 1 \\
+%	    \hline
+%	    1 & 1 & 0 \\
+%	    \hline
+%	  \end{tabular}
+%  \end{center}
+%\end{table}
+%
+%\begin{itemize}
+%    \item Pokud $A = 0$, tak $Y = B$.
+%    \item Pokud $A = 1$, tak $Y = \overline{B}$, vznikne nám tedy negace.
+%    \item Výsledkem  $A \oplus B $ je logická jednička, pokud se její vstupy liší.
+%    \item XOR je funkce komutativní, takže nezáleží na pořadí dílčích kroků, to znamená, že $(A \oplus B) \oplus C = A \oplus (B \oplus C)$.
+%\end{itemize}
+%
+%$$ Y = A \oplus B = \overline{A}B + A\overline{B} = (\overline{A} + \overline{B}) (A + B) $$
 
 
 
