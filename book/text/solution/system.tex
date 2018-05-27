@@ -10,7 +10,7 @@ Vesta je rozdělena do několika bloků, aby byl její návrh jednodušší a ta
     \begin{center}
         \includegraphics[width=\textwidth]{img/vest-system}
     \end{center}
-    \caption{blokové schéma vesty}
+    \caption{Blokové schéma vesty}
 \end{figure}
 
 Řídící jednotkou vesty je 32~\jedn{b} MCU STM32F405RGT založený na ARM jádru Cortex M4, jeho základními parametry jsou 1~\jedn{MB} FALSH paměti a 192~\jedn{kB} RAM.
@@ -33,23 +33,23 @@ Poslední důležitou úlohou MCU je komunikace s napájecím subsystémem a mon
     \begin{center}
         \includegraphics[width=\textwidth]{img/gun}
     \end{center}
-    \caption{blokové schéma zbraně}
+    \caption{Blokové schéma zbraně}
 \end{figure}
-Hlavním funkcí zbraně je vysílání RF signálu. Ten je generován MCU STM32F042F6P, který je založený na ARM jádru Cortex M0. Je vybaven 32~\jedn{kB} FLASH a 6~\jedn{kB} SRAM. Generovaný IR signál je složen ze dvou signálů a to nosného a datového. tyto dva signály jsou směšovány dohromady pomocí hradla AND a následně je jím ovládána vysílací IR LED.
+Hlavním funkcí zbraně je vysílání IR signálu. Ten je generován MCU STM32F042F6P, který je založený na ARM jádru Cortex M0. Je vybaven 32~\jedn{kB} FLASH a 6~\jedn{kB} SRAM. Generovaný IR signál je složen ze dvou signálů a to nosného a datového. tyto dva signály jsou směšovány dohromady pomocí hradla AND a následně je jím ovládána vysílací IR LED.
 
 Zbraň dále obsahuje laserovou diodu, využívanou ke znázornění místa, kam hráč střílí. Dále jsou ve zbrani dostupné bílá, UV a RGB LED, které svítí v závislosti na nastavení hry.
 
 Zbraň je vybavena dvěma tlačítky, spouští, která slouží k ovládání vysílání a pojistkou jejíž funkce závisí na nastavení hry. Buď je jejím stiskem podmíněna střelba a nebo je používána k ovládání svítilny realizované bílou či UV LED.
 
-Ve zbrani je také vybavena IR detektorem, který není nijak spojen s MCU zbraně, nýbrž je propojen přímo z detekčním systémem vesty.
+Zbraň je také vybavena IR detektorem, který není nijak spojen s MCU zbraně, nýbrž je propojen přímo z detekčním systémem vesty.
 
-Komunikace mezi řídícím MCU vesty a MCU zbraně probíhá prostřednictvím UART sběrnice. Ze zbraně po této sběrnici přichází povolení a zákazy střelby, případně nastavení RGB LED, naopak zbraň se ptá vesty na její adresu a nastavení RGB.
+Komunikace mezi řídícím MCU vesty a MCU zbraně probíhá prostřednictvím rozhraní UART. Ze zbraně po této sběrnici přichází povolení a zákazy střelby, případně nastavení RGB LED, naopak zbraň se ptá vesty na její adresu a nastavení RGB.
 
 \section{Směrovač}
 \begin{figure}[H]
     \begin{center}
         \includegraphics[width=\textwidth]{img/router}
     \end{center}
-    \caption{blokové schéma směrovače}
+    \caption{Blokové schéma směrovače}
 \end{figure}
 Pomocí RF modulu zajišťuje komunikaci ze zařízeními v síti. Je také vybaven MCU STM32F405RGT, které je pro co nejrychlejší zpracovávání rámců z vest taktováno na 160~\jedn{MHz}. Na základě požadavků z řídícího počítače nastavuje zařízení v síti. Přiděluje zařízením v síti komunikační okna a získané informace ze zařízení zasílá opět do řídícího počítače. Zajišťuje také jednotné časování vest v síti.

@@ -41,9 +41,9 @@ Laserové diody nalézají uplatnění tam, kde je třeba vyzářit velký optic
 \section{Optické přijímače}
 Optický přijímač nebo-li detektor či čidlo je elektrotechnická součástka, která převádí elektromagnetické vlnění o vlnových délkách $\lambda \in \langle 1~\jedn{\mu m};~100~\jedn{nm} \rangle$ na elektrickou veličinu, nejčastěji napětí nebo proud.
 
-\subsection{Foto-dioda}
-Foto-dioda je polovodičová součástka, založená na fotoelektrickém jevu, která je navržená pro detekování záření. Převádí dopadající elektromagnetické vlny na elektrický proud. Konstrukčně se podobá \zkratka{LED}. Foto-diody se
-mohou rozdělit na dvě skupiny a to na PN foto-diody a PIN foto-diody.
+\subsection{Fotodioda}
+Fotodioda je polovodičová součástka, založená na fotoelektrickém jevu, která je navržená pro detekování záření. Převádí dopadající elektromagnetické vlny na elektrický proud. Konstrukčně se podobá \zkratka{LED}. Fotodiody se
+mohou rozdělit na dvě skupiny a to na PN fotodiody a PIN fotodiody.
 
 Dopadne-li na oblast PN přechodu foton s dostatečnou energii, uvolní z depletiční oblasti jeden pár díra-elektron. Pokud není k diodě přiloženo vnější napětí, je v depletiční oblasti difuzní napětí. Díky difuznímu napětí je elektron urychlen do oblasti N a díra do oblasti P, tím vzniká driftový proud (proud v závěrném směru).
 
@@ -60,20 +60,20 @@ PIN diody jsou oproti PN diodám mnohem rychlejší, mají velkou oblast prostor
     \caption{Struktura PIN diody}
 \end{figure}
 
-\subsection{Foto-tranzistor}
-Foto-tranzistor se může modelovat jako foto-dioda s tranzistorem jako zesilovačem fotonového proudu. Díky zesílení signálu je schopen detekovat i nižší intenzitu záření. Jeho nevýhodou je, že má $\beta$ větší parazitní kapacitu ($\beta$ je proudový zesilovací činitel), která omezuje jeho mezní frekvenci. Proto není vhodný pro měření rychlých signálů.
+\subsection{Fototranzistor}
+Fototranzistor se může modelovat jako fotodioda s tranzistorem jako zesilovačem fotonového proudu. Díky zesílení signálu je schopen detekovat i nižší intenzitu záření. Jeho nevýhodou je, že má $\beta$ větší parazitní kapacitu ($\beta$ je proudový zesilovací činitel), která omezuje jeho mezní frekvenci. Proto není vhodný pro měření rychlých signálů.
 
 \begin{figure}[H]
     \begin{center}
         \includegraphics[scale=1]{img/foto-tran}
     \end{center}
-    \caption{Náhradní schéma foto-tranzistoru}
+    \caption{Náhradní schéma fototranzistoru}
 \end{figure}
 
-U reálného foto-tranzistoru, dopadají fotony přímo do oblasti báze, není tedy realizovaný foto-diodou s klasickým tranzistorem.
+U reálného fototranzistoru, dopadají fotony přímo do oblasti báze, není tedy realizovaný fotodiodou s klasickým tranzistorem.
 
 \subsection{Integrované přijímače}
-Integrované optické přijímače mají na jednom čipu integrovanou, kromě foto-diody, i další elektroniku. Zpravidla obsahují vstupní zesilovač, pásmovou propust, demodulátor a výstupní zesilovač.
+Integrované optické přijímače mají na jednom čipu integrovanou, kromě fotodiody, i další elektroniku. Zpravidla obsahují vstupní zesilovač, pásmovou propust, demodulátor a výstupní zesilovač.
 
 \begin{figure}[H]
     \begin{center}
@@ -82,7 +82,7 @@ Integrované optické přijímače mají na jednom čipu integrovanou, kromě fo
     \caption{Blokové schéma integrovaného přijímače OSRB38C9BA}
 \end{figure}
 
-Pro konkrétnější popis bude popsán výše uvedený přijímač. Záření v okolí vlnové délky $940~\jedn{\mikro m}$ je detekováno foto-diodou a pomocí trans-impedančního zesilovače (TIA) přivedeno do přijímače. TIA funguje jako napěťový sledovač, který má velký vstupní odpor a malý výstupní odpor. Je tu proto, aby se odebíraným výkonem nezatěžovala foto-dioda.
+Pro konkrétnější popis bude popsán výše uvedený přijímač. Záření v okolí vlnové délky $940~\jedn{\mikro m}$ je detekováno fotodiodou a pomocí trans-impedančního zesilovače (TIA) přivedeno do přijímače. TIA funguje jako napěťový sledovač, který má velký vstupní odpor a malý výstupní odpor. Je tu proto, aby se odebíraným výkonem nezatěžovala fotodioda.
 
 S TIA je signál přiváděn do zesilovače s nastavitelným zesílením (CGA). Po zesílení je z CGA přiveden na pásmovou propust (BPF) se středním kmitočtem $37,9~\jedn{kHz}$. Ta slouží k odfiltrování rušivých frekvenčních složek před demodulací, aby nevznikali parazitní intermodulační produkty.
 

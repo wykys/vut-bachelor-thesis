@@ -17,7 +17,7 @@ Bylo rozhodnuto použít osm bitů pro adresu a šestnáct bitů pro kontrolní 
 \end{figure}
 
 \section{Výběr IR vysílače}
-IR vysílač má za úkol v relativně širokém rozsahu vzdáleností (přibližně 1 až 15 metrů) osvítit zásahové čidlo a předat mu informaci o tom, kdo jej zasáhl.
+IR vysílač má za úkol v relativně širokém rozsahu vzdáleností (přibližně 1 až 15 metrů, což odpovídá vzdálenostem, na které jsou od sebe hráči v laser game arénách vzdáleni) osvítit zásahové čidlo a předat mu informaci o tom, kdo jej zasáhl.
 
 Z dostupných součástek na trhu byl hledán kompromis mezi cenou, výkonem a vyzařovacím úhlem.
 
@@ -25,12 +25,19 @@ IR lasery se při laser game příliš často nepoužívají, protože jejich pa
 
 Při experimentech s IR LED s různými vyzařovacími úhly se mi pro tento účel jevily jako ideální diody s vyzařovacím úhlem $12^\circ$, vložené do $10$~\jedn{cm} trubičky. Diody s menším vyzařovacím úhlem byly problematické při kratších vzdálenostech, protože vyzařovaný kužel byl příliš malý.
 
-Důležitým parametrem IR LED je vlnová délka vyzařovaného záření - volba závisí na použitém přijímači. Pokud by měly vysílač s přijímačem rozdílnou vlnovou délku, nastával by útlum signálu přímo úměrný rozdílu vlnových délek. Vybrána byla nejrozšířenější vlnová délka $940~\jedn{nm}$.
+Důležitým parametrem IR LED je vlnová délka vyzařovaného záření - volba závisí na použitém přijímači. Pokud by měly vysílač s přijímačem rozdílnou vlnovou délku, nastával by útlum přenášeného signálu. Vybrána byla nejrozšířenější vlnová délka $940~\jedn{nm}$.
 
 \section{Výběr IR přijímače}
-IR přijímač má za úkol detekovat IR záření vysílané vysílačem. Vzhledem k tomu, že přijímače jsou integrované přímo ve vestě, je důležitým kritériem jejich velikost. Integrované přijímače jsou pro tento účel ideální - mají v sobě integrovanou foto-diodu, vstupní transimpedančí zesilovač, pásmovou propust, demodulátor i zesilovač, který má nastavitelné zesílení a snaží se udržet amplitudu výstupního signálu stabilní. A navíc, většina těchto zesilovačů má výstup typu otevřený kolektor, takže lze snímače spojovat bez nutnosti použítí dalších součástkek.
+IR přijímač má za úkol detekovat IR záření vysílané vysílačem. Vzhledem k tomu, že přijímače jsou integrované přímo ve vestě, je důležitým kritériem jejich velikost. Integrované přijímače jsou pro tento účel ideální - mají v sobě integrovanou fotodiodu, vstupní transimpedančí zesilovač, pásmovou propust, demodulátor i zesilovač, který má nastavitelné zesílení a snaží se udržet amplitudu výstupního signálu stabilní. A navíc, většina těchto zesilovačů má výstup typu otevřený kolektor, takže lze snímače spojovat bez nutnosti použití dalších součástek.
 
-Důlěžitým parametrem je snímací úhel, v případě snímačů by bylo ideální, kdyby snímaly záření dopadající i pod úhlem $90^\circ$ stejně citlivě jako záření dopadající na snímač přímo pod nulovým úhlem. Takové snímače ale nejsou dostupné - snímače, které jsou na trhu, mají nejčastěji přijímací úhel $45^\circ$, pro použití při laser game to je ale málo. Ve výsledku byl nalezen přijímač OSRB38C9BA s úhlem $90^\circ$ a vlnovou délkou $940~\jedn{nm}$.
+Důležitým parametrem je snímací úhel, v případě snímačů by bylo ideální, kdyby snímaly záření dopadající i pod úhlem $90^\circ$ stejně citlivě jako záření dopadající na snímač přímo pod nulovým úhlem. Takové snímače ale nejsou dostupné - snímače, které jsou na trhu, mají nejčastěji přijímací úhel $45^\circ$, pro použití při laser game to je ale málo. Ve výsledku byl nalezen přijímač OSRB38C9BA s úhlem $90^\circ$ a vlnovou délkou $940~\jedn{nm}$.
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=0.7\textwidth]{img/OSRB38C9BA-direction}
+    \end{center}
+    \caption{Směrová charakteristika OSRB38C9BA, převzato z katalogového listu výrobce}
+\end{figure}
 
 \begin{figure}[H]
     \begin{center}
@@ -39,12 +46,12 @@ Důlěžitým parametrem je snímací úhel, v případě snímačů by bylo ide
     \caption{Ukázka funkce ideálního integrovaného detektoru}
 \end{figure}
 
-Tento přijímač očekává signál modulovaný na nosný signál $37,9~\jedn{kHz}$. Podstanou vlastností přijímače je tolerance výstupního signálu $\pm 200~\jedn{\mikro s}$ na vstupní testovací puls o šířce $600~\jedn{\mikro s}$.
+Tento přijímač očekává signál modulovaný na nosný signál $37,9~\jedn{kHz}$. Podstatnou vlastností přijímače je tolerance výstupního signálu $\pm 200~\jedn{\mikro s}$ na vstupní testovací puls o šířce $600~\jedn{\mikro s}$. S tím je třeba počítat při návrhu komunikačního protokolu.
 
 \section{Přenos IR signálu}
-IR signál je přenášen od vysílače vzduchem k přijímači. IR signál má vlastnost, že se dobře odráží od bílých stěn, toho lze pozorovat například na ovladačích ke spotřební elektronice, které fungují na stejných principech, pokud ovladač namíříme na bílý strop, IR záření se od něj odrazí a dostane se až k detektoru spotřebiče. Proto jsou stěny v LG arénách tmavé, aby záření pohlcovaly.
+IR signál je přenášen od vysílače vzduchem k přijímači. IR signál má vlastnost, že se dobře odráží od bílých stěn, to lze pozorovat například na dálkových ovladačích ke spotřební elektronice, které fungují na stejných principech, pokud ovladač namíříme na bílý strop, IR záření se od něj odrazí a dostane se až k detektoru spotřebiče. Proto jsou stěny v LG arénách tmavé, aby záření pohlcovaly.
 
-Přenášený IR signál musí být modulovaný na nosnou vlnu. Pokud by nebyl modulovaný, stačilo by na detektor jen posvítit, například ze zářivky a detektor by toto záření interpretoval jako náš požadovaný signál, přestože by se jednalo o rušení. Takto náhodně generované rušení může oklamat i CRC. Bohužel, namodulování signálu na nosnou vlnu nezabrání veškerému rušení do systému proniknout. Bohužel existují i LED osvětlení, které mají spínaný měnič právě na frekvenci nosné frekvence systému vest, čímž osvětlení kompletně zahltí komunikační kanál rušením. Proto je důležité v aréně používat kvalitní světelné zdroje s měniči pracujícími na odlišných-vyšších frekvencích.
+Přenášený IR signál musí být modulovaný na nosnou vlnu. Pokud by nebyl modulovaný, stačilo by na detektor jen posvítit, například ze zářivky a detektor by toto záření interpretoval jako náš požadovaný signál, přestože by se jednalo o rušení. Bohužel, namodulování signálu na nosnou vlnu nezabrání veškerému rušení do systému proniknout, navíc existují i LED osvětlení, jejichž budiče pracují právě na frekvenci nosné frekvence systému vest, čímž osvětlení kompletně zahltí komunikační kanál rušením. Proto je důležité v aréně používat kvalitní světelné zdroje s měniči pracujícími na odlišných-vyšších frekvencích.
 
 \section{První návrh systému IR přenosu dat}
 \begin{figure}[H]
@@ -102,14 +109,19 @@ Komunikace začíná odesláním startovacího impulzu, poté následuje startov
   \end{center}
 \end{table}
 
-
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=\textwidth]{img/ir-protocol}
+    \end{center}
+    \caption{Ukázka jednoho rámce přenášeného IR protokolem}
+\end{figure}
 
 \subsection{Zhodnocení}
-Tento protokol je spolehlivý, povedlo se jím opravit všechny nedostatky, kterými trpěla první navržená verze. Navíc došlo ke zjednodušení HW. V přijímači už není potřeba mít hradlo negace - z HW by se mohlo vypustit i hradlo AND a nahradit jej hradlem NAND, které je součástí IRTIM (IR timeru, který vznikne spojením timeru 16 a 17) integrovaným přímo v některých STM32F0 mikrokontrolérech. Pro vysílač ale stačilo použít malý mikrokontrolér STM32F042F6P6, použití diskrétního hradla AND nebylo nutné.
+Tento protokol je spolehlivý, povedlo se jím opravit všechny nedostatky, kterými trpěla první navržená verze. Navíc došlo ke zjednodušení HW. V přijímači už není potřeba mít hradlo negace - z HW by se mohlo vypustit i hradlo AND a nahradit jej hradlem NAND, které je součástí IRTIM (IR timeru, který vznikne spojením timeru 16 a 17) integrovaným přímo v některých MCU řady STM32F0. Pro vysílač ale byl vybrán MCU, který integrovaným NAND hradlem nedisponuje.
 
-Maximální doba přenosu jednoho packetu (plného logických jedniček), trvá $86,2~\jedn{ms}$. Minimální doba přenosu packetu (plného nul) je $71,8~\jedn{ms}$, maximální přenosová rychlost je $334~\jedn{bps}$ a minimální přenosová rychlost je $278~\jedn{bps}$. Dosažené přenosové rychlosti jsou sice mnohem nižší než v předchozí verzi, ale vzhledem k přenesenému objemu dat $24~\jedn{b}$ po stisku spoušti, je doba přenosu přijatelná.
+Maximální doba přenosu jednoho rámce (plného logických jedniček), trvá $86,2~\jedn{ms}$. Minimální doba přenosu rámce (plného nul) je $71,8~\jedn{ms}$, maximální přenosová rychlost je $334~\jedn{bps}$ a minimální přenosová rychlost je $278~\jedn{bps}$. Dosažené přenosové rychlosti jsou sice mnohem nižší než v předchozí verzi, ale vzhledem k přenesenému objemu dat $24~\jedn{b}$ po stisku spoušti, je doba přenosu přijatelná.
 
-Případné navýšení datové propustnosti protokolu by bylo možné pomocí snížení mezery mezi packety.
+Případné navýšení datové propustnosti protokolu by bylo možné pomocí snížení mezery mezi rámci.
 
 %\begin{figure}[H]
     %\begin{center}

@@ -4,8 +4,8 @@ Zvukový generátor je důležitou součástí \zkratka{LG} vesty. Zajišťuje g
 \section{Požadavky na generátor}
 Pro generátor je jedním z nejdůležitějších požadavků jeho paměť alespoň 800~\jedn{kB}, aby se do ní vešli všechny vzorky zvuků i firmware.  možnost jej řídit pomocí \zkratka{UART} a jednoduchá indikace přehrávání a možnost snížit odběr generátoru pomocí GPIO.
 
-\section{Převody ADC DAC}
-TODO
+%\section{Převody ADC DAC}
+%TODO
 
 
 \section{Realizace generátoru}
@@ -23,7 +23,7 @@ Zvuky jsou v paměti reprezentovány vzorky. Tedy polem kvantovaných hodnot sn�
 
 Pokud chceme obnovit původní signál, je třeba tyto vzorky signálu ve stejných časech převádět pomocí DAC na napětí. K tomu je využita jednotka DMA a časovač. DMA je nakonfigurováno tak, aby přenášelo vzorky vybraného zvuku z paměti FLASH do DAC. Jednotka DAC je přitom spouštěna časovačem, který generuje spouštěcí signál stejnou frekvencí jako byla vzorkovací frekvence zvuků, tedy 16~\jedn{kHz}. Na výstupu mikroprocesoru tedy můžeme pozorovat napětí odpovídající hodnotám vzorků.
 
-Následně je třeba signál obnovit pomocí rekonstrukčního (anti-aliasingového) filtru, tedy filtru typu dolní propust. Ten ze signálu odstraní nežádoucí spektrální složky, které vznikají skoky z hodnoty jednoho vzorku na vzorek druhý.
+Následně je třeba signál obnovit pomocí rekonstrukčního (anti-aliasingového) filtru, tedy filtru typu dolní propust. Ten ze signálu odstraní nežádoucí spektrální složky, které vznikají skoky z hodnoty jednoho vzorku na vzorek druhý. Filtr byl navržen pomocý online návrhového prostředí firmy Analog Devices.
 
 Poté je signál zesílen ve výkonovém integrovaném audio zesilovači LM4861 a přiveden do reproduktoru, kde dojde k jeho převodu na akustický signál.
 
@@ -32,7 +32,7 @@ S generátorem se jednoduše komunikuje pomocí UARTu. Během komunikace se rozl
 \begin{itemize}
     \item zastavit přehrávání
     \item změnit zvukovou sadu
-    \item přehrát zvuk z nastavené zvukové sady
+    \item přehrát zvuk z nastavené zvukové sady (skupiny zvuků namluvené stejným jazykem)
 \end{itemize}
 
 

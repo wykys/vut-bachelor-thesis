@@ -38,7 +38,16 @@ Ze vztahu lze vyvodit, že platí $U_2 \geq U_1$. Při použití reálných sou�
 
 Řídící obvod se snaží udržovat konstantní výstupní napětí pomocí regulování střídy. Výstupní napětí je monitorováno díky zpětné vazbě realizované napěťovým děličem. Poměr rezistorů $R_{FB1}$ a $R_{RB2}$ určuje výsledné výstupní napětí.
 
-\section{Nabíječka}
+Pro realizaci zvyšujícího měniče byl vybrán integrovaný obvod firmy Linear Technology LTC1871.
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=\textwidth]{img/boost-sim}
+    \end{center}
+    \caption{Ověření funkce simulací zvyšujícího měniče v programu LTspice}
+\end{figure}
+
+\section{Nabíjecí obvod}
 Nabíječka zajišťuje přesouvání energie z externího zdroje do akumulátoru - právě díky ní jsou akumulátory opakovatelně použitelné. Pro laser game arény je důležité, aby nabíječka byla schopná přes noc (12 hodin času) dobít akumulátory. Vezmeme-li v úvahu kapacitu akumulátoru a čas potřebný pro jeho nabití, zjistíme, že nabíječka musí být schopna nabíjet akumulátor minimálně proudem 633~\jedn{mA}, od čehož se musí odvíjet i výběr nabíjecího obvodu. Nakonec byl vybrán obvod BQ24192 od firmy Texas Instruments.
 
 BQ24192 je určený k nabíjení lithium-iontových a lithium-polymerových akumulátorů. Je založen na snižujícím spínaném měniči, dokáže pracovat od napájecího napětí 3,9~\jedn{V} až 17~\jedn{V} a nabíjet proudem až 4,5~\jedn{A}. Je také schopen monitorovat teplotu článku pomocí termistoru. S okolím komunikuje prostřednictvím I2C sběrnice, která umožňuje nastavovat některé nabíjecí parametry.
@@ -47,7 +56,7 @@ BQ24192 je určený k nabíjení lithium-iontových a lithium-polymerových akum
     \begin{center}
         \includegraphics[width=\textwidth]{img/bq24192-block}
     \end{center}
-    \caption{nabíjecí obvod BQ24192, převzato z katalogového listu výrobce}
+    \caption{Nabíjecí obvod BQ24192, převzato z katalogového listu výrobce}
 \end{figure}
 
 Pinem PSEL se nastaví jestli je obvod napájen z USB (vysoká úroveň) a nebo adaptéru (nízká úroveň). \Overline{CE}~ povoluje nabíjení, \Overline{PG}~ signalizuje přítomnost napájecího napětí a STAT signalizuje stav nabíjení (vysoká úroveň signalizuje dokončení nabíjení). Velmi důležitým pinem je ILIM, který slouží k nastavení maximálního nabíjecího proudu pomocí rezistoru $R_{ILIM}$.
@@ -55,13 +64,13 @@ Pinem PSEL se nastaví jestli je obvod napájen z USB (vysoká úroveň) a nebo 
 $$I_{IN MAX} = \dfrac{1~\jedn{V}}{R_{ILIM}} \cdot 530 = \dfrac{1}{180} \doteq \underline{\underline{3~\jedn{A}}}$$ \nonumber
 
 \section{Monitorování náboje}
-Monitorování stavu nabití akumulátoru je důležité zejména pro obsluhu arény, aby nedošlo k nechtěnému vypnutí vesty při aktivní hře. Signalizovat stav akumulátoru lze například i prostým děličem napětí, v případě, kdy by postačovalo rozlišování pouze dvou stavů, jinak analogově digitálním převodníkem. Tyto metody ale mají nevýhodu, že výstupní napětí akumulátoru se může měnit v závislosti na odebíraném proudu a vnitřním odporu akumulátoru. Obsluha pak může být mystifikována z fluktuací napětí a a může nesprávně vyhodnotit reální stav akumulátoru. Proto tyto metody byly zavrhnuty a stav je vyhodnocován z celkového náboje.
+Monitorování stavu nabití akumulátoru je důležité zejména pro obsluhu arény, aby nedošlo k nechtěnému vypnutí vesty při aktivní hře. Signalizovat stav akumulátoru lze například i prostým děličem napětí, v případě, kdy by postačovalo rozlišování pouze dvou stavů, jinak analogově digitálním převodníkem. Tyto metody ale mají nevýhodu, že výstupní napětí akumulátoru se může měnit v závislosti na odebíraném proudu a vnitřním odporu akumulátoru. Obsluha pak může být mystifikována z fluktuací napětí a a může nesprávně vyhodnotit reální stav akumulátoru. Proto tyto metody byly zavrženy a stav je vyhodnocován z celkového náboje.
 
 \begin{figure}[H]
     \begin{center}
         \includegraphics[width=\textwidth]{img/LTC2941-block}
     \end{center}
-    \caption{blokové schéma obvodu LTC2941, převzato z katalogového listu výrobce}
+    \caption{Blokové schéma obvodu LTC2941, převzato z katalogového listu výrobce}
 \end{figure}
 Použil jsem integrovaný obvod LTC2941 firmy Linear Technology. Tento obvod je stále připojený k akumulátoru přes snímací rezistor malé hodnoty, ze kterého v klidu odebírá proud pod $100~\jedn{\mu A}$.
 
