@@ -41,7 +41,7 @@ Při přenosu dat může dojít k jejich poškození. Abychom mohli ověřit kor
 \section{Parita}
 Parita je velmi jednoduchou cestou k zabezpečení dat. Ke každému slovu přenášených dat se přidá jeden redundantní bit označovaný jako paritní, jehož hodnota zrcadlí celkový počet jedniček. Paritu rozlišujeme na sudou a lichou. Nevýhodou parity je, že nedokáže odhalit několikanásobnou chybu.
 
-\subsection{Sudá parita}
+\paragraph{Sudá parita}
 Paritní bit je nastaven tak, aby celkový počet jedniček v datovém slově včetně bitu paritního byl sudý. Můžeme ho spočítat jako exkluzivní součet všech bitů datového slova.
 $$ P_{sudá} = b_0 \oplus b_1 \oplus ... \oplus b_n $$
 
@@ -52,7 +52,7 @@ $$ P_{sudá} = b_0 \oplus b_1 \oplus ... \oplus b_n $$
     \caption{Ukázka sudé parity}
 \end{figure}
 
-\subsection{Lichá parita}
+\paragraph{Lichá parita}
 Paritní bit je nastaven tak, aby celkový počet jedniček v datovém slově včetně bitu paritního byl lichý. Můžeme ho spočítat obdobně jako sudý paritní bit, jen výsledek je třeba znegovat.
 $$ P_{lichá} = \overline{ b_0 \oplus b_1 \oplus ... \oplus b_n } $$
 
@@ -122,11 +122,11 @@ Při přenosu pole bajtů nastává problém, jakým způsobem pro ně efektivn�
     \item Na začátku algoritmu přiřadíme do proměnné $crc$ vektor 32 jedniček.
     \item Poté každým bajtem dat modifikujeme hodnotu proměnné $crc$. Modifikace proměnné $crc$ spočívá v provedení exkluzivního součtu $crc$ s aktuálně zpracovávaným bytem dat a následného maskování výsledku pomocí bitového součinu s číslem 255. Touto operací vytvoříme číslo $\in \langle 0;~255 \rangle$, tedy 1~\jedn{B}.
     \item Pro takto upravený bajt je spočítán kontrolní součet.
-    \item Provedeme exkluzivní součet mezi výsledkem 3. bodu a proměnnou $crc$ bitově posunutou o osm míst do prava.
+    \item Provedeme exkluzivní součet mezi výsledkem 3. bodu a proměnnou $crc$ bitově posunutou o osm míst doprava.
     \item Výsledek 4. bodu uložíme do proměnné $crc$
     \item Opakujeme od 2. bodu dokud neprojdeme všechny datové bajty.
     \item Nakonec znegujeme hodnotu proměnné $crc$ ve které bude výsledek kontrolního součtu.
 \end{enumerate}
 
 
-Výpočet kontrolního součtu je možné zrychlit. Vzhledem k tomu, že probíhá nad známou množinou dat, stačí předpočítat tabulku kontrolních součtů pro hodnoty $\in \langle 0; 256 \rangle$ a poté místo výpočtu jen přistupovat na daný řádek tabulky.
+Výpočet kontrolního součtu je možné zrychlit. Vzhledem k tomu, že probíhá nad známou množinou dat, stačí předem vypočítat tabulku kontrolních součtů pro hodnoty $\in \langle 0; 256 \rangle$ a poté místo výpočtu jen přistupovat na daný řádek tabulky.
