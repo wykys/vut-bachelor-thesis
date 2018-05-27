@@ -39,7 +39,7 @@ Emitované fotony se odráží od zrcadla a polopropustného zrcadla.  Krystal s
 Laserové diody nalézají uplatnění tam, kde je třeba vyzářit velký optický výkon. Vzhledem k tomu, že v laserovém režimu se diody nachází až od vyššího proudu, tak vyžadují dobré chlazení, aby nedošlo k jejich poškození.
 
 \section{Optické přijímače}
-Optický přijímač nebo-li detektor či čidlo je elektrotechnická součástka, která převádí elektromagnetické vlnění o frekvencích $f \in \langle 300~\jedn{GHz}~;~100~\jedn{PHz} \rangle$ na elektrickou veličinu, nejčastěji napětí nebo proud.
+Optický přijímač nebo-li detektor či čidlo je elektrotechnická součástka, která převádí elektromagnetické vlnění o vlnových délkách $\lambda \in \langle 1~\jedn{\mu m};~100~\jedn{nm} \rangle$ na elektrickou veličinu, nejčastěji napětí nebo proud.
 
 \subsection{Foto-dioda}
 Foto-dioda je polovodičová součástka, založená na fotoelektrickém jevu, která je navržená pro detekování záření. Převádí dopadající elektromagnetické vlny na elektrický proud. Konstrukčně se podobá \zkratka{LED}. Foto-diody se
@@ -60,7 +60,7 @@ PIN diody jsou oproti PN diodám mnohem rychlejší, mají velkou oblast prostor
     \caption{Struktura PIN diody}
 \end{figure}
 
-\subsection{Fototranzistor}
+\subsection{Foto-tranzistor}
 Foto-tranzistor se může modelovat jako foto-dioda s tranzistorem jako zesilovačem fotonového proudu. Díky zesílení signálu je schopen detekovat i nižší intenzitu záření. Jeho nevýhodou je, že má $\beta$ větší parazitní kapacitu ($\beta$ je proudový zesilovací činitel), která omezuje jeho mezní frekvenci. Proto není vhodný pro měření rychlých signálů.
 
 \begin{figure}[H]
@@ -70,7 +70,7 @@ Foto-tranzistor se může modelovat jako foto-dioda s tranzistorem jako zesilova
     \caption{Náhradní schéma foto-tranzistoru}
 \end{figure}
 
-U reálného foto-tranzistoru, dopadají fotony přímo do oblasti báze, není tedy realizovaný foto-diodou s klasickým tranzistorem. Výše uvedený model, slouží jen pro získání představy o mezním kmitočtu.
+U reálného foto-tranzistoru, dopadají fotony přímo do oblasti báze, není tedy realizovaný foto-diodou s klasickým tranzistorem.
 
 \subsection{Integrované přijímače}
 Integrované optické přijímače mají na jednom čipu integrovanou, kromě foto-diody, i další elektroniku. Zpravidla obsahují vstupní zesilovač, pásmovou propust, demodulátor a výstupní zesilovač.
