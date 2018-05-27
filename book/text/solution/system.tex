@@ -15,7 +15,7 @@ Vesta je rozdělena do několika bloků, aby byl její návrh jednodušší a ta
 
 Řídící jednotkou vesty je 32~\jedn{b} MCU STM32F405RGT založený na ARM jádru Cortex M4, jeho základními parametry jsou 1~\jedn{MB} FALSH paměti a 192~\jedn{kB} RAM.
 
-MCU využívá čtyř separátních UART sběrnic pro komunikaci ze subsystémy vesty. Prostřednictvím RF modulu HM-TRP zajišťuje komunikaci z routerem. Zpracovává příchozí data z rádiového modulu a podle nich nastavuje parametry vesty či posílá routeru informace.
+MCU využívá čtyř separátních UART sběrnic pro komunikaci ze subsystémy vesty. Prostřednictvím RF modulu HM-TRP zajišťuje komunikaci ze směrovačem. Zpracovává příchozí data z rádiového modulu a podle nich nastavuje parametry vesty či posílá směrovači informace.
 
 Další úlohou řídícího MCU je zpracovávání dat z IR detektoru. Podle nich dochází k vyhodnocování zásahů hráče, pokud k zásahu dojde nebo je hráč z jiného důvodu vyřazen ze hry, pošle řídící MCU příkaz do zbraně aby byla zablokována střelba. Jakmile může hráč opět ve kře pokračovat pošle do zbraně příkaz k odblokování.
 
@@ -45,11 +45,11 @@ Ve zbrani je také vybavena IR detektorem, který není nijak spojen s MCU zbran
 
 Komunikace mezi řídícím MCU vesty a MCU zbraně probíhá prostřednictvím UART sběrnice. Ze zbraně po této sběrnici přichází povolení a zákazy střelby, případně nastavení RGB LED, naopak zbraň se ptá vesty na její adresu a nastavení RGB.
 
-\section{Router}
+\section{Směrovač}
 \begin{figure}[H]
     \begin{center}
         \includegraphics[width=\textwidth]{img/router}
     \end{center}
-    \caption{blokové schéma routeru}
+    \caption{blokové schéma směrovače}
 \end{figure}
 Pomocí RF modulu zajišťuje komunikaci ze zařízeními v síti. Je také vybaven MCU STM32F405RGT, které je pro co nejrychlejší zpracovávání rámců z vest taktováno na 160~\jedn{MHz}. Na základě požadavků z řídícího počítače nastavuje zařízení v síti. Přiděluje zařízením v síti komunikační okna a získané informace ze zařízení zasílá opět do řídícího počítače. Zajišťuje také jednotné časování vest v síti.
