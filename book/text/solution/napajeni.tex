@@ -56,7 +56,7 @@ BQ24192 je určený k nabíjení lithium-iontových a lithium-polymerových akum
     \begin{center}
         \includegraphics[width=\textwidth]{img/bq24192-block}
     \end{center}
-    \caption{Nabíjecí obvod BQ24192, převzato z katalogového listu výrobce}
+    \caption{Nabíjecí obvod BQ24192, převzato z \cite{charger}}
 \end{figure}
 
 Pinem PSEL se nastaví jestli je obvod napájen z USB (vysoká úroveň) a nebo adaptéru (nízká úroveň). \Overline{CE}~ povoluje nabíjení, \Overline{PG}~ signalizuje přítomnost napájecího napětí a STAT signalizuje stav nabíjení (vysoká úroveň signalizuje dokončení nabíjení). Velmi důležitým pinem je ILIM, který slouží k nastavení maximálního nabíjecího proudu pomocí rezistoru $R_{ILIM}$.
@@ -70,7 +70,7 @@ Monitorování stavu nabití akumulátoru je důležité zejména pro obsluhu ar
     \begin{center}
         \includegraphics[width=\textwidth]{img/LTC2941-block}
     \end{center}
-    \caption{Blokové schéma obvodu LTC2941, převzato z katalogového listu výrobce}
+    \caption{Blokové schéma obvodu LTC2941, převzato z \cite{columb-monitor}}
 \end{figure}
 Použil jsem integrovaný obvod LTC2941 firmy Linear Technology. Tento obvod je stále připojený k akumulátoru přes snímací rezistor malé hodnoty, ze kterého v klidu odebírá proud pod $100~\jedn{\mu A}$.
 
