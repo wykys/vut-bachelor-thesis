@@ -23,7 +23,7 @@ Další úlohou řídícího MCU je zpracovávání dat z IR detektoru. Podle ni
 
 Pokud je třeba sdělit hráči nějakou informaci, tak v závislosti na nastavení hry může řídící MCU aktivovat zvukový subsystém, vypsat údaje na displej nebo použít RGB LED.
 
-Po zapnutí si MCU zjistí svou adresu pomocí GPIO portu nastaveného jako vstupní s vnitřním pull-up rezistorem. Adresa je HW podle osazení rezistorů na PCB. Tato adresa je poté využívána v RF i IR komunikaci.
+Po zapnutí si MCU zjistí svou adresu pomocí GPIO portu nastaveného jako vstupní s vnitřním pull-up rezistorem. Adresa je nastavena hardwarově při výrobě osazením rezistorů. Tato adresa je poté využívána v RF i IR komunikaci.
 
 Poslední důležitou úlohou MCU je komunikace s napájecím subsystémem a monitorování stavu akumulátoru.
 
@@ -44,6 +44,8 @@ Zbraň je vybavena dvěma tlačítky, spouští, která slouží k ovládání v
 Zbraň je také vybavena IR detektorem, který není nijak spojen s MCU zbraně, nýbrž je propojen přímo s detekčním systémem vesty.
 
 Komunikace mezi řídícím MCU vesty a MCU zbraně probíhá prostřednictvím rozhraní UART. Ze zbraně po této sběrnici přichází povolení a zákazy střelby, případně nastavení RGB LED, naopak zbraň se ptá vesty na její adresu a nastavení RGB.
+
+Zbraň je spojena z vestou pomocí kabelu, tím je napájena a také jeho prostřednictvým může komunikovat z vestou.
 
 \section{Směrovač}
 \begin{figure}[H]

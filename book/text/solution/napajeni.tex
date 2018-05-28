@@ -48,7 +48,7 @@ Pro realizaci zvyšujícího měniče byl vybrán integrovaný obvod firmy Linea
 \end{figure}
 
 \section{Nabíjecí obvod}
-Nabíječka zajišťuje přesouvání energie z externího zdroje do akumulátoru - právě díky ní jsou akumulátory opakovatelně použitelné. Pro laser game arény je důležité, aby nabíječka byla schopná přes noc (12 hodin času) dobít akumulátory. Vezmeme-li v úvahu kapacitu akumulátoru a čas potřebný pro jeho nabití, zjistíme, že nabíječka musí být schopna nabíjet akumulátor minimálně proudem 633~\jedn{mA}, od čehož se musí odvíjet i výběr nabíjecího obvodu. Nakonec byl vybrán obvod BQ24192 od firmy Texas Instruments.
+Nabíjecí obvod zajišťuje nabíjení akumulátoru z externího zdroje energie. Pro laser game arény je důležité, aby nabíječka byla schopná přes noc (12 hodin času) dobít akumulátory. Vezmeme-li v úvahu kapacitu akumulátoru a čas potřebný pro jeho nabití, zjistíme, že nabíječka musí být schopna nabíjet akumulátor minimálně proudem 633~\jedn{mA}, od čehož se musí odvíjet i výběr nabíjecího obvodu. Nakonec byl vybrán obvod BQ24192 od firmy Texas Instruments.
 
 BQ24192 je určený k nabíjení lithium-iontových a lithium-polymerových akumulátorů. Je založen na snižujícím spínaném měniči, dokáže pracovat od napájecího napětí 3,9~\jedn{V} až 17~\jedn{V} a nabíjet proudem až 4,5~\jedn{A}. Je také schopen monitorovat teplotu článku pomocí termistoru. S okolím komunikuje prostřednictvím I2C sběrnice, která umožňuje nastavovat některé nabíjecí parametry.
 

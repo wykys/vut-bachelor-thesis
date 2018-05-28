@@ -8,7 +8,7 @@ Rádiová komunikace je druhou nejdůležitější funkcí LG vesty. Využívá 
     \end{center}
     \caption{Blokové schéma topologie sítě}
 \end{figure}
-Byla použita hvězdicová topologie sítě, v jejímž středu se nachází směrovač, který zprostředkovává komunikaci mezi řídícím počítačem na jedné straně a vestami na straně druhé. Tato topologie je výhodná, protože nedochází ke konfliktům mezi jednotlivými zařízeními. Směrovač uděluje jednotlivým zařízením v síti časová okna, kdy mohou komunikovat. Směrovač je tedy v této síti v roli řídícího prvku a ostatní zařízení jsou pouze řízená.
+Byla použita hvězdicová topologie sítě, v jejímž středu se nachází směrovač, který zprostředkovává komunikaci mezi řídícím počítačem na jedné straně a vestami na straně druhé. Tato topologie je výhodná, protože nedochází ke konfliktům mezi jednotlivými zařízeními. Směrovač uděluje jednotlivým zařízením v síti časová okna, kdy mohou komunikovat. Směrovač je tedy v této síti v roli řídícího prvku a ostatní zařízení jsou pouze řízená. Informace o dostupných zařízení získá z nastavení hry od řídícího počítače.
 
 \section{Přenášený rámec}
 \begin{figure}[H]
@@ -29,4 +29,4 @@ Rámec začíná 8\jedn{b} adresou, která specifikuje příjemce, resp. odesíl
     \end{center}
     \caption{Blokové schéma komunikačního řetězce z moduly HM-TRP}
 \end{figure}
-Rádiové rozhraní je postavené na modulech HM-TRP firmy Hope Microelectronics. Moduly mají programovatelnou pracovní frekvenci, systém používá 868~\jedn{MHz}. Dále mají nastavitelný vysílací výkon $\in \langle 1; 20 \rangle~\jedn{dBm}$. Moduly pracují v poloduplexním módu, tedy v jeden okamžik mohou buďto přijímat nebo vysílat. Dále jsou moduly vybaveny rozhraním UART, umožnujícím snadnou komunikaci s modulem (přijímat a vysílat přenášená data a také modul konfigurovat). Moduly poskytují pouze možnost vysílat a přijímat data, která jsou do něj pomocí UART poslána, avšak negarantují úspěšnost doručení dat na místo určení. Tento problém je třeba řešit na vyšší vrstvě komunikace.
+Rádiové rozhraní je postavené na modulech HM-TRP firmy Hope Microelectronics. Moduly mají programovatelnou pracovní frekvenci, systém používá 868~\jedn{MHz}. Dále mají nastavitelný vysílací výkon $\in \langle 1; 20 \rangle~\jedn{dBm}$ a přenosovou rychlost $\in \langle 1,2; 115,2 \rangle~\jedn{kbps}$. Moduly pracují v poloduplexním módu, tedy v jeden okamžik mohou buďto přijímat nebo vysílat. Dále jsou moduly vybaveny rozhraním UART, umožnujícím snadnou komunikaci s modulem (přijímat a vysílat přenášená data a také modul konfigurovat). Moduly poskytují pouze možnost vysílat a přijímat data, která jsou do něj pomocí UART poslána, avšak negarantují úspěšnost doručení dat na místo určení. Tento problém je třeba řešit na vyšší vrstvě komunikace. Spotřeba modulu je 1~\jedn{$\mu$A} v režimu spánku, 25~\jedn{mA} při příjmu a 100~\jedn{mA} při vysílání maximálním výkonem.
