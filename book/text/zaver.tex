@@ -1,7 +1,7 @@
 \chapter{Závěr}
 
-Podařilo se mi navrhnout velmi spolehlivý protokol pro přenos dat pomocí infračerveného záření, založený na 16~\jedn{b} CRC, díky tomu je chybovost systému 15~\jedn{ppm}. První verze návrhu se potýkala s problémem zahlcování detektorů shluky nul a následnou chybnou interpretací zkreslených dat.
+Podařilo se mi navrhnout velmi spolehlivý protokol pro přenos dat pomocí infračerveného záření, založený na 16\jedn{b} CRC, díky tomu je chybovost systému $1,526 \cdot 10^{-5}$. První verze návrhu se potýkala s problémem zahlcování detektorů shluky nul a následnou chybnou interpretací zkreslených dat.
 
-Druhá verze problémy odstranila návrhem nového robustního komunikačního protokolu. Navržený protokol korektně přenáší i rámce plné nul, protože byla změněna reprezentace logických hodnot v komunikaci. Výhodou tohoto systému je i možnost zjistit výpadek při probíhající komunikaci.
+Druhá verze problémy odstranila návrhem nového robustního komunikačního protokolu. Navržený protokol korektně přenáší i rámce plné nul, protože byla změněna reprezentace logických hodnot v komunikaci ze stavů svítí nesvítí na pulzy definovaných délek. Výhodou tohoto systému je i možnost zjistit výpadek při probíhající komunikaci, protože i nula je přenášena jako pulz.
 
-TODO: - plánuji přepsat, přidat výpočty ke zdrojům a některé kapitoly ještě rozšířit
+Dále byl navržený komunikační protokol pro rádiovou komunikaci v hvězdicové síti, který je založený na rámcích proměnných délek, schopný v jednom rámci pojmout až 512~\jedn{B} dat. Protokol k ověřování platnosti dat používá 32\jedn{b} CRC, takže pravděpodobnost chyby je prakticky nulová ($2,328 \cdot 10^{-10}$).
